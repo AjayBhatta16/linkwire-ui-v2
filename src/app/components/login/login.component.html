@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="d-flex flex-column align-items-center mt-5">
+        <h1>Sign In</h1>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <input 
+                    type="text" 
+                    matInput 
+                    placeholder="Username" 
+                    formControlName="username"
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <input 
+                    type="password" 
+                    matInput 
+                    placeholder="Password" 
+                    formControlName="password"
+                >
+            </mat-form-field>
+            @if ((error$ | async) != null) {
+                <small class="form-text text-danger">{{ (error$ | async) }}</small>
+            }
+            <div class="button">
+                <button 
+                    type="submit" 
+                    mat-raised-button 
+                    color="primary"
+                >Login</button>
+            </div>
+        </form>
+    </div>
+</div>

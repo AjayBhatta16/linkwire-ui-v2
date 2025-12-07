@@ -12,12 +12,13 @@ export class UserEffects {
     login$ = createEffect(() => 
         this.actions$.pipe(
             ofType(userLogin),
-            switchMap(({ username, password }) => 
-                this.userService.login(username, password).pipe(
+            switchMap(({ username, password }) => {
+                console.log('login event')
+                return this.userService.login(username, password).pipe(
                     map(user => userLoginSuccess({ userInfo: user })),
                     catchError(error => of(userLoginFailure({ error })))
-                )
-            )
+                );
+            })
         )
     )
 
