@@ -10,24 +10,23 @@ export class UserService {
     private http = inject(HttpClient);
 
     login(username: string, password: string): Observable<User> {
-        console.log(`Logging in user: ${username}`);
-
-        return of({
-            username: username,
-            email: 'test@email.com',
-            premiumUser: false,
-            links: []
-        })
+        return this.http.post<User>(
+            'https://linkwire.cc/user/verify', 
+            { 
+                username, 
+                password 
+            }
+        );
     }
 
     signup(username: string, email: string, password: string): Observable<User> {
-        console.log(`Signing up user: ${username} with email: ${email}`);
-
-        return of({
-            username: username,
-            email: email,
-            premiumUser: false,
-            links: []
-        })
+        return this.http.post<User>(
+            'https://linkwire.cc/user/create', 
+            { 
+                username, 
+                email, 
+                password 
+            }
+        );
     } 
 }
