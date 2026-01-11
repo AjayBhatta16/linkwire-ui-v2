@@ -4,10 +4,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginFacade } from "./login.facade";
 import { CommonModule } from "@angular/common";
-import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { Router } from "@angular/router";
-import { combineLatest, distinctUntilChanged } from "rxjs";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Router, RouterModule } from "@angular/router";
+import { BehaviorSubject, combineLatest, distinctUntilChanged, map } from "rxjs";
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { detectJSONChanges } from "../../utils/pipe-utils";
 
 @Component({
     selector: 'linkwire-login',
@@ -18,6 +19,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
+        RouterModule,
     ],
     providers: [
         LoginFacade,
@@ -29,12 +31,24 @@ export class LoginComponent implements OnInit {
     private router = inject(Router);
 
     loading$ = this.facade.loading$;
-    error$ = this.facade.error$;
     user$ = this.facade.user$;
 
+    validationErrorSubject = new BehaviorSubject<string | null>(null);
+    validationError$ = this.validationErrorSubject.asObservable();
+
+    error$ = combineLatest([
+        this.facade.error$, 
+        this.validationError$
+    ]).pipe(
+        distinctUntilChanged(detectJSONChanges),
+        map(([facadeError, validationError]) => {
+            return validationError ?? facadeError;
+        })
+    );
+
     form: FormGroup = new FormGroup({
-        username: new FormControl(''),
-        password: new FormControl(''),
+        username: new FormControl('', { validators: [Validators.required] }),
+        password: new FormControl('', { validators: [Validators.required] }),
     });
 
     ngOnInit(): void {
@@ -42,7 +56,7 @@ export class LoginComponent implements OnInit {
             this.user$,
             this.loading$,
         ]).pipe(
-            distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)),
+            distinctUntilChanged(detectJSONChanges),
             takeUntilDestroyed(this.destroyRef),
         ).subscribe(([user, loading]) => {
             if (user && !loading) {
@@ -52,7 +66,20 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
+        if (this.form.get('username')?.invalid) {
+            this.validationErrorSubject.next('Username/E-Mail is required.');
+            return;
+        }
+
+        if (this.form.get('password')?.invalid) {
+            this.validationErrorSubject.next('Password is required.');
+            return;
+        }
+
+        this.validationErrorSubject.next(null);
+
         const { username, password } = this.form.value;
+
         this.login(username, password);
     }
     

@@ -1,15 +1,16 @@
 <div class="container-fluid">
     <div class="d-flex flex-column align-items-center mt-5">
-        <h1>Sign In</h1>
+        <h1 class="mb-3">Sign In</h1>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <mat-form-field>
                 <input 
                     type="text" 
                     matInput 
-                    placeholder="Username" 
+                    placeholder="Username/E-Mail" 
                     formControlName="username"
                 >
             </mat-form-field>
+            <br/>
             <mat-form-field>
                 <input 
                     type="password" 
@@ -18,9 +19,15 @@
                     formControlName="password"
                 >
             </mat-form-field>
-            @if ((error$ | async) != null) {
-                <small class="form-text text-danger">{{ (error$ | async) }}</small>
-            }
+            <div class="mt-0 mb-2">
+                <a href="/signup" class="mr-3"><small>Sign Up</small></a>
+                <a href="/forgot-password" [style.visibility]="'hidden'"><small>Forgot Password</small></a>
+            </div>
+            <small 
+                class="form-text text-danger mb-2" 
+            >
+                {{ (error$ | async) }}
+            </small>
             <div class="button">
                 <button 
                     type="submit" 
