@@ -1,14 +1,16 @@
-import { Observable, of } from "rxjs";
+import { Observable, of, tap } from "rxjs";
 import { User } from "../models/user";
 import { inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { LegacyApiResponse } from "../models/legacy-api-response";
+import { AuthService } from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
     private http = inject(HttpClient);
+    private authService = inject(AuthService);
 
     login(username: string, password: string): Observable<LegacyApiResponse<User>> {
         return this.http.post<LegacyApiResponse<User>>(
@@ -17,6 +19,12 @@ export class UserService {
                 username, 
                 password 
             }
+        ).pipe(
+            tap(response => {
+                if (!!response.token) {
+                    this.authService.login(response.token);
+                }
+            })
         );
     }
 
@@ -28,6 +36,12 @@ export class UserService {
                 email, 
                 password 
             }
+        ).pipe(
+            tap(response => {
+                if (!!response.token) {
+                    this.authService.login(response.token);
+                }
+            })
         );
     } 
 }
