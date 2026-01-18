@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { AgGridAngular } from "ag-grid-angular";
-import { DEFAULT_SIZE_STRATEGY } from "../../../utils/ag-grid-utils";
+import { DEFAULT_COL_DEF, DEFAULT_SIZE_STRATEGY, DEFAULT_THEME } from "../../../utils/ag-grid-utils";
 import { ColDef } from "ag-grid-community";
 
 @Component({
@@ -15,4 +15,6 @@ export class AgGridComponent<TData> {
     @Input() rowData: TData[] = [];
 
     autoSizeStrategy = DEFAULT_SIZE_STRATEGY;
+    defaultColDef = DEFAULT_COL_DEF;
+    theme = DEFAULT_THEME;
 }
