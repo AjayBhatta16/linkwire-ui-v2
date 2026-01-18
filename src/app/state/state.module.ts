@@ -4,6 +4,8 @@ import { UserEffects } from "./effects/user.effects";
 import { provideStore } from "@ngrx/store";
 import { userFeature } from "./features/user.feature";
 import { HttpClientModule } from "@angular/common/http";
+import { linkFeature } from "./features/link.feature";
+import { LinkEffects } from "./effects/link.effects";
 
 @NgModule({
     imports: [
@@ -11,9 +13,13 @@ import { HttpClientModule } from "@angular/common/http";
     ],
     providers: [
         provideStore({
-            [userFeature.name]: userFeature.reducer
+            [userFeature.name]: userFeature.reducer,
+            [linkFeature.name]: linkFeature.reducer,
         }),
-        provideEffects(UserEffects)
+        provideEffects([
+            UserEffects,
+            LinkEffects,
+        ])
     ]
 })
 export class StateModule {}
