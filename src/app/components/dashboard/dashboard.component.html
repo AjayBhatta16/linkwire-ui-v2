@@ -8,11 +8,10 @@
             class="mt-5"
         >+ New Link</button>
         <div class="h-100 w-100 mt-3 mb-3">
-            <ag-grid-angular
-                class="ag-theme-quartz-dark h-100"
-                [columnDefs]="colDefs"
-                [rowData]="links$ | async"
-            ></ag-grid-angular>
+            <app-ag-grid
+                [colDefs]="colDefs"
+                [rowData]="(links$ | async) ?? []"
+            ></app-ag-grid>
         </div>
     </div>
 </div>

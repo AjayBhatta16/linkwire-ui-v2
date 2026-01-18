@@ -20,13 +20,12 @@ export const dashboardColumns: ColDef<DisplayLink>[] = [
     {
         headerName: 'Note',
         field: 'note',
-        width: 300,
         filter: 'agTextColumnFilter',
     },
     {
         headerName: 'Click Count',
         field: 'clickCount',
-        width: 120,
+        width: 150,
         filter: 'agNumberColumnFilter',
     }
 ]

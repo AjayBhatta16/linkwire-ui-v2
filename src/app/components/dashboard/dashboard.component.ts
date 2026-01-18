@@ -1,15 +1,15 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { DashboardFacade } from "./dashboard.facade";
-import { AgGridAngular } from "ag-grid-angular";
 import { dashboardColumns } from "./dashboard.api";
 import { MatButtonModule } from "@angular/material/button";
+import { AgGridComponent } from "../shared/ag-grid/ag-grid.component";
 
 @Component({
     selector: 'linkwire-dashboard',
     templateUrl: './dashboard.component.html',
     imports: [
-        AgGridAngular,
+        AgGridComponent,
         CommonModule,
         MatButtonModule,
     ],
