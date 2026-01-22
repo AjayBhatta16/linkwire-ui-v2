@@ -29,6 +29,6 @@ export class DashboardComponent {
     colDefs = dashboardColumns;
 
     handleAddLink() {
-        this.dialog.open(AddLinkDialogComponent);
+        this.dialog.open(AddLinkDialogComponent, { minWidth: 500 });
     }
 }
