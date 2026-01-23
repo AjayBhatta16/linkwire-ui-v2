@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,8 @@ import { BehaviorSubject, combineLatest, distinctUntilChanged, map } from 'rxjs'
 import { detectJSONChanges } from '../../../utils/pipe-utils';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { urlValidator } from '../../../utils/form-utils';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-add-link-dialog',
@@ -27,12 +29,15 @@ import { urlValidator } from '../../../utils/form-utils';
         DashboardFacade,
     ],
 })
-export class AddLinkDialogComponent {
+export class AddLinkDialogComponent implements OnInit {
     constructor(private dialogRef: MatDialogRef<AddLinkDialogComponent>) {}
 
+    private destroyRef = inject(DestroyRef);
     private facade = inject(DashboardFacade);
+    private router = inject(Router);
 
     loading$ = this.facade.linkLoading$;
+    link$ = this.facade.activeLink$;
 
     validationErrorSubject = new BehaviorSubject<string | null>(null);
     validationError$ = this.validationErrorSubject.asObservable();
@@ -51,6 +56,20 @@ export class AddLinkDialogComponent {
         redirectURL: new FormControl('', { validators: [ Validators.required, urlValidator ] }),
         note: new FormControl(''),
     });
+
+    ngOnInit(): void {
+        combineLatest([
+            this.link$,
+            this.loading$,
+        ]).pipe(
+            distinctUntilChanged(detectJSONChanges),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe(([link, loading]) => {
+            if (link && !loading) {
+                this.router.navigate(['/viewlink', link.trackingID]);
+            }
+        })
+    }
 
     onSubmit() {
         if (this.form.get('redirectURL')?.invalid) {
