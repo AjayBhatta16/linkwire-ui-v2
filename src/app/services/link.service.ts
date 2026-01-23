@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { Link } from "../models/link";
+import { CreateLinkRequest, Link } from "../models/link";
 import { Observable } from "rxjs";
 import { LegacyApiResponse } from "../models/legacy-api-response";
 
@@ -10,7 +10,7 @@ import { LegacyApiResponse } from "../models/legacy-api-response";
 export class LinkService {
     private http = inject(HttpClient);
 
-    createLink(link: Link): Observable<LegacyApiResponse<Link>> {
+    createLink(link: CreateLinkRequest): Observable<LegacyApiResponse<Link>> {
         return this.http.post<LegacyApiResponse<Link>>(
             'https://linkwire.cc/api/link/create',
             link

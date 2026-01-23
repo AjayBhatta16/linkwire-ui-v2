@@ -5,13 +5,18 @@ export type Link = {
     displayID: string;
     redirectURL: string;
     note: string;
-    siteTitle: string;
-    siteDescription: string;
-    siteBannerURL: string;
+    siteTitle?: string;
+    siteDescription?: string;
+    siteBannerURL?: string;
     useLogin: boolean;
-    loginPageBrand: string;
+    loginPageBrand?: string;
     createdBy: string;
     clicks: Click[];
+}
+
+export type CreateLinkRequest = {
+    redirectURL: string;
+    note: string;
 }
 
 export type DisplayLink = {

@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Link } from "../../models/link";
+import { CreateLinkRequest, Link } from "../../models/link";
 
 const actionNames = {
     CREATE_LINK: "[Link] Create Link",
@@ -13,7 +13,7 @@ const actionNames = {
 export const createLink = createAction(
     actionNames.CREATE_LINK,
     props<{
-        link: Link;
+        link: CreateLinkRequest;
     }>()
 );
 
