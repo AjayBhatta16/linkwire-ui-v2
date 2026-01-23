@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RedirectComponent } from './components/redirect/redirect.component';
+import { ViewLinkComponent } from './components/viewlink/viewlink.component';
 
 /**
  * Matches URLs of the form /<6-digit-code>/... (requires at least one path segment after the code)
@@ -28,6 +29,7 @@ export const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'dashboard', component: DashboardComponent },
+    { path: 'viewlink/:linkID', component: ViewLinkComponent },
 	{ 
         matcher: sixDigitCodeMatcher, 
         component: RedirectComponent,
