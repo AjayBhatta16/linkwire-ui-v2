@@ -11,7 +11,6 @@ export const dashboardColumns: ColDef<DisplayLink>[] = [
         headerName: 'Tracking ID',
         field: 'trackingID',
         width: 150,
-        filter: 'agSetColumnFilter',
     },
     {
         headerName: 'Access URL',
