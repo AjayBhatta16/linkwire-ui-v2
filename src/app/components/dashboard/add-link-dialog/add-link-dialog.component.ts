@@ -7,7 +7,7 @@ import { DashboardFacade } from '../dashboard.facade';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject, combineLatest, distinctUntilChanged, map } from 'rxjs';
 import { detectJSONChanges } from '../../../utils/pipe-utils';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { urlValidator } from '../../../utils/form-utils';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
@@ -24,6 +24,7 @@ import { Router } from '@angular/router';
         MatFormFieldModule,
         MatInputModule,
         CommonModule,
+        ReactiveFormsModule,
     ],
     providers: [
         DashboardFacade,
@@ -67,11 +68,14 @@ export class AddLinkDialogComponent implements OnInit {
         ).subscribe(([link, loading]) => {
             if (link && !loading) {
                 this.router.navigate(['/viewlink', link.trackingID]);
+                this.dialogRef.close();
             }
         })
     }
 
     onSubmit() {
+        console.log('Submitting form', this.form.value);
+
         if (this.form.get('redirectURL')?.invalid) {
             this.validationErrorSubject.next('A valid URL is required.');
             return;

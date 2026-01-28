@@ -12,7 +12,7 @@ export class LinkService {
 
     createLink(link: CreateLinkRequest): Observable<LegacyApiResponse<Link>> {
         return this.http.post<LegacyApiResponse<Link>>(
-            'https://linkwire.cc/api/link/create',
+            'https://linkwire.cc/link/create',
             link
         );
     }

@@ -1,5 +1,6 @@
 <h2 class="text-center" mat-dialog-title>Create Link</h2>
 <mat-dialog-content>
+  <form [formGroup]="form">
     <div class="w-75 mx-auto">
       <mat-form-field class="w-100">
         <input 
@@ -25,6 +26,7 @@
         class="form-text text-danger mb-2" 
       >{{ (error$ | async) }}</small>
     </div>
+  </form>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button 
