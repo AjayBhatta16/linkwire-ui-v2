@@ -2,13 +2,13 @@ import { urlRegex } from "./form-utils";
 
 describe('form-utils', () => {
     it('urlRegex works', () => {
-        var re = new RegExp();
+        var re = new RegExp(urlRegex);
 
         var test1 = "https://ajaybhattacharyya.com";
         var test2 = "ajaybhattacharyya.com";
         var test3 = "not a match";
-        var test4 = "http://localhost:5000";
-        var test5 = "https://www.google.com";
+        var test4 = "https://127.0.0.1:3000";
+        var test5 = "http://www.google.com";
         var test6 = "https://www.google.com/";
         var test7 = "https://ajaybhattacharyya.com/resume.pdf";
 
