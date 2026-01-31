@@ -1,6 +1,6 @@
 import { createSelector } from "@ngrx/store";
 import { linkFeature } from "../features/link.feature";
-import { toDisplayData } from "../../models/link";
+import { toDisplayClickData } from "../../models/click";
 
 export const {
     selectLink,
@@ -10,10 +10,10 @@ export const {
 
 export const selectClicks = createSelector(
     selectLink,
-    (link) => link?.clicks ?? []
+    (link) => toDisplayClickData(link?.clicks || [])
 )
 
 export const selectAccessUri = createSelector(
     selectLink,
-    (link) => toDisplayData([link!])[0].accessURL
+    (link) => `https://linkwire.cc/${link?.displayID}`
 )

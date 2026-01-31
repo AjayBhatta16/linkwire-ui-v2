@@ -1,6 +1,6 @@
 export type Click = {
     clickID: string;
-    ipAddress: string;
+    ip: string;
     linkID: string;
     timestamp: number;
     userAgent: string;
@@ -13,4 +13,19 @@ export type Click = {
     proxy: boolean;
     hosting: boolean;
     asn: string;
+}
+
+export type DisplayClick = Click & {
+    autoIncrementID: number;
+    displayTimestamp: string;
+}
+
+export function toDisplayClickData(clicks: Click[]): DisplayClick[] {
+    return clicks
+        .sort((a, b) => b.timestamp - a.timestamp)
+        .map((click, index) => ({
+            ...click,
+            autoIncrementID: index + 1,
+            displayTimestamp: new Date(click.timestamp).toString(),
+        }));
 }
