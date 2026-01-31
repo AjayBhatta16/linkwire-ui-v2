@@ -8,6 +8,9 @@ const actionNames = {
     USER_SIGNUP: "[User] User Signup",
     USER_SIGNUP_SUCCESS: "[User] User Signup Success",
     USER_SIGNUP_FAILURE: "[User] User Signup Failure",
+    USER_DATA_REFRESH_REQUEST: "[User] User Data Refresh Request",
+    USER_DATA_REFRESH_SUCCESS: "[User] User Data Refresh Success",
+    USER_DATA_REFRESH_FAILURE: "[User] User Data Refresh Failure",
 }
 
 export const userLogin = createAction(
@@ -50,6 +53,27 @@ export const userSignupSuccess = createAction(
 
 export const userSignupFailure = createAction(
     actionNames.USER_SIGNUP_FAILURE,
+    props<{
+        error: any;
+    }>()
+);
+
+export const userDataRefreshRequest = createAction(
+    actionNames.USER_DATA_REFRESH_REQUEST,
+    props<{
+        username: string;
+    }>()
+);
+
+export const userDataRefreshSuccess = createAction(
+    actionNames.USER_DATA_REFRESH_SUCCESS,
+    props<{
+        userInfo: User;
+    }>()
+);
+
+export const userDataRefreshFailure = createAction(
+    actionNames.USER_DATA_REFRESH_FAILURE,
     props<{
         error: any;
     }>()

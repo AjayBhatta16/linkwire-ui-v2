@@ -22,7 +22,7 @@ export class UserService {
         ).pipe(
             tap(response => {
                 if (!!response.token) {
-                    this.authService.login(response.token);
+                    this.authService.login(response.token, response.data.username);
                 }
             })
         );
@@ -39,9 +39,18 @@ export class UserService {
         ).pipe(
             tap(response => {
                 if (!!response.token) {
-                    this.authService.login(response.token);
+                    this.authService.login(response.token, response.data.username);
                 }
             })
         );
     } 
+
+    refreshUserData(username: string): Observable<LegacyApiResponse<User>> {
+        return this.http.post<LegacyApiResponse<User>>(
+            'https://linkwire.cc/user/info', 
+            {
+                username,
+            },
+        );
+    }
 }

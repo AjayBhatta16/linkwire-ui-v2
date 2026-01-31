@@ -1,6 +1,16 @@
 import { createFeature, createReducer, on } from "@ngrx/store";
 import { User } from "../../models/user";
-import { userLogin, userLoginFailure, userLoginSuccess, userSignup, userSignupFailure, userSignupSuccess } from "../actions/user.actions";
+import { 
+    userDataRefreshFailure, 
+    userDataRefreshRequest, 
+    userDataRefreshSuccess, 
+    userLogin, 
+    userLoginFailure, 
+    userLoginSuccess, 
+    userSignup, 
+    userSignupFailure, 
+    userSignupSuccess 
+} from "../actions/user.actions";
 import { createLinkSuccess } from "../actions/link.actions";
 
 interface UserState {
@@ -57,6 +67,22 @@ export const userFeature = createFeature({
                 ...state.user,
                 links: [...state.user.links, link]
             } : null
+        })),
+        on(userDataRefreshRequest, (state) => ({
+            ...state,
+            loading: true,
+            error: null,
+        })),
+        on(userDataRefreshSuccess, (state, { userInfo }) => ({
+            ...state,
+            user: userInfo,
+            loading: false,
+            error: null,
+        })),
+        on(userDataRefreshFailure, (state, { error }) => ({
+            ...state,
+            loading: false,
+            error,
         }))
     )
 });

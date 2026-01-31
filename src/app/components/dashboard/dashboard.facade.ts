@@ -3,9 +3,12 @@ import { Store } from "@ngrx/store";
 import { selectDisplayLinks, selectUser } from "../../state/selectors/user.selector";
 import { selectError, selectLink, selectLoading } from "../../state/selectors/link.selectors";
 import { createLink } from "../../state/actions/link.actions";
+import { AuthService } from "../../services/auth.service";
+import { userDataRefreshRequest } from "../../state/actions/user.actions";
 
 @Injectable()
 export class DashboardFacade {
+    private authService = inject(AuthService);
     private store = inject(Store);
 
     user$ = this.store.select(selectUser);
@@ -22,5 +25,13 @@ export class DashboardFacade {
                 note: note ?? '',
             }
         }))
+    }
+
+    refreshUserData(): void {
+        const username = this.authService.getUsername();
+
+        if (username) {
+            this.store.dispatch(userDataRefreshRequest({ username }));
+        }
     }
 }
