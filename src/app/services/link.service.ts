@@ -16,4 +16,10 @@ export class LinkService {
             link
         );
     }
+
+    fetchLink(linkId: string): Observable<LegacyApiResponse<Link>> {
+        return this.http.get<LegacyApiResponse<Link>>(
+            `https://linkwire.cc/links/${linkId}`
+        );
+    }
 }

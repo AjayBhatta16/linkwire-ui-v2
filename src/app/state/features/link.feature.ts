@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from "@ngrx/store";
 import { Link } from "../../models/link";
-import { createLink, createLinkFailure, createLinkSuccess } from "../actions/link.actions";
+import { createLink, createLinkFailure, createLinkSuccess, fetchLinkDetails, fetchLinkDetailsFailure, fetchLinkDetailsSuccess } from "../actions/link.actions";
 
 interface LinkState {
     link: Link | null;
@@ -30,6 +30,22 @@ export const linkFeature = createFeature({
             error: null,
         })),
         on(createLinkFailure, (state, { error }) => ({
+            ...state,
+            loading: false,
+            error,
+        })),
+        on(fetchLinkDetails, (state) => ({
+            ...state,
+            loading: true,
+            error: null,
+        })),
+        on(fetchLinkDetailsSuccess, (state, { link }) => ({
+            ...state,
+            link,
+            loading: false,
+            error: null,
+        })),
+        on(fetchLinkDetailsFailure, (state, { error }) => ({
             ...state,
             loading: false,
             error,
