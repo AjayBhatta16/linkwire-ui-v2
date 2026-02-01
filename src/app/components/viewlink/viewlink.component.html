@@ -9,7 +9,14 @@
             ></i>
             <h1>Link Tracking</h1>
         </div>
-        <h4 class="font-weight-normal">Access URL: {{ accessUri$ | async }}</h4>
+        <div class="d-flex align-items-center">
+            <h4 class="font-weight-normal">Access URL: {{ accessUri$ | async }}</h4>
+            <i 
+                class="fa-regular fa-copy text-primary ml-2" 
+                role="button"
+                (click)="copyAccessUriToClipboard()"
+            ></i>
+        </div>
         <div class="h-100 w-100 mt-3 mb-3">
             <app-ag-grid
                 [colDefs]="colDefs"

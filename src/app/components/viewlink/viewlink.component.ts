@@ -7,6 +7,8 @@ import { CommonModule } from "@angular/common";
 import { DisplayClick } from "../../models/click";
 import { MatDialog } from "@angular/material/dialog";
 import { ClickDetailsDialogComponent } from "./click-details-dialog/click-details-dialog.component";
+import { Clipboard } from '@angular/cdk/clipboard';
+import { toSignal } from "@angular/core/rxjs-interop";
 
 @Component({
     selector: 'linkwire-viewlink',
@@ -24,10 +26,13 @@ export class ViewLinkComponent implements OnInit {
     private facade = inject(ViewLinkFacade);
     private router = inject(Router);
     private readonly dialog = inject(MatDialog);
+    private clipboard = inject(Clipboard);
 
     clicks$ = this.facade.clicks$
     link$ = this.facade.link$;
     accessUri$ = this.facade.accessUri$;
+
+    accessUri = toSignal(this.accessUri$);
 
     linkID?: string | null;
 
@@ -55,5 +60,9 @@ export class ViewLinkComponent implements OnInit {
             },
             minWidth: 500,
         });
+    }
+
+    copyAccessUriToClipboard(): void {
+        this.clipboard.copy(this.accessUri() ?? '');
     }
 }
