@@ -13,4 +13,8 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
+
+  it('should fail', () => {
+    expect(true).toBe(false);
+  })
 });
