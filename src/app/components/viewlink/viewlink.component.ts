@@ -5,6 +5,8 @@ import { AgGridComponent } from "../shared/ag-grid/ag-grid.component";
 import { linkHistoryColDefs, ViewLinkGridContext } from "./viewlink.api";
 import { CommonModule } from "@angular/common";
 import { DisplayClick } from "../../models/click";
+import { MatDialog } from "@angular/material/dialog";
+import { ClickDetailsDialogComponent } from "./click-details-dialog/click-details-dialog.component";
 
 @Component({
     selector: 'linkwire-viewlink',
@@ -21,6 +23,7 @@ export class ViewLinkComponent implements OnInit {
     private route = inject(ActivatedRoute);
     private facade = inject(ViewLinkFacade);
     private router = inject(Router);
+    private readonly dialog = inject(MatDialog);
 
     clicks$ = this.facade.clicks$
     link$ = this.facade.link$;
@@ -46,6 +49,11 @@ export class ViewLinkComponent implements OnInit {
     }
 
     handleViewDetails(click: DisplayClick): void {
-
+        this.dialog.open(ClickDetailsDialogComponent, {
+            data: {
+                ...click,
+            },
+            minWidth: 500,
+        });
     }
 }

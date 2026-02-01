@@ -1,0 +1,47 @@
+<h2 class="text-center" mat-dialog-title>IP Log Info</h2>
+<mat-dialog-content>
+    <dl>
+        <dt>Timestamp</dt>
+        <dd>{{ data.displayTimestamp }}</dd>
+
+        <dt>IP Address</dt>
+        <dd>{{ data.ip }}</dd>
+
+        <dt>Location</dt>
+        <dd>{{ data.location }}</dd>
+
+        <dt>User Agent</dt>
+        <dd>{{ data.userAgent }}</dd>
+
+        <dt>Device Type</dt>
+        <dd>{{ data.device }}</dd>
+
+        <dt>Operating System</dt>
+        <dd>{{ data.os }}</dd>
+
+        <dt>Browser</dt>
+        <dd>{{ data.client }}</dd>
+
+        <dt>ISP</dt>
+        <dd>{{ data.isp }}</dd>
+
+        <dt>ASN</dt>
+        <dd>{{ data.asn }}</dd>
+
+        <dt>Mobile</dt>
+        <dd>{{ data.mobile ? 'Yes' : 'No' }}</dd>
+
+        <dt>Proxy</dt>
+        <dd>{{ data.proxy ? 'Yes' : 'No' }}</dd>
+
+        <dt>Hosting</dt>
+        <dd>{{ data.hosting ? 'Yes' : 'No' }}</dd>
+    </dl>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button 
+    mat-raised-button 
+    mat-dialog-close
+    color="primary"
+  >Cancel</button>
+</mat-dialog-actions>
