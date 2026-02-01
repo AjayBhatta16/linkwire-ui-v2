@@ -1,5 +1,10 @@
 import { ColDef } from "ag-grid-community";
 import { DisplayClick } from "../../models/click";
+import { IconActionsRendererComponent, IconActionsRendererParams } from "../shared/cell-renderers/icon-actions-renderer/icon-actions-renderer.component";
+
+export type ViewLinkGridContext = {
+    onViewDetails: (click: DisplayClick) => void;
+}
 
 export const linkHistoryColDefs: ColDef<DisplayClick>[] = [
     {
@@ -21,5 +26,18 @@ export const linkHistoryColDefs: ColDef<DisplayClick>[] = [
     {
         headerName: 'Details',
         width: 75,
+        cellRenderer: IconActionsRendererComponent,
+        cellRendererParams: {
+            actions: [
+                {
+                    iconClass: 'fa-solid fa-circle-info text-primary',
+                    onClick: (params: IconActionsRendererParams) => {
+                        const context = params.context as ViewLinkGridContext;
+                        const data = params.data as DisplayClick;
+                        context.onViewDetails(data);
+                    }
+                }
+            ]
+        }
     },
 ];

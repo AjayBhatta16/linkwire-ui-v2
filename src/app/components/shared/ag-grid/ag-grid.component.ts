@@ -10,9 +10,10 @@ import { ColDef } from "ag-grid-community";
         AgGridAngular,
     ],
 })
-export class AgGridComponent<TData> {
+export class AgGridComponent<TData, TContext = unknown> {
     @Input() colDefs: ColDef<TData>[] = [];
     @Input() rowData: TData[] = [];
+    @Input() context?: TContext;
 
     autoSizeStrategy = DEFAULT_SIZE_STRATEGY;
     defaultColDef = DEFAULT_COL_DEF;

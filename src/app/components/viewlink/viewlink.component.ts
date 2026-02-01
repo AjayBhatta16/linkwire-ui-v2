@@ -2,8 +2,9 @@ import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ViewLinkFacade } from "./viewlink.facade";
 import { AgGridComponent } from "../shared/ag-grid/ag-grid.component";
-import { linkHistoryColDefs } from "./viewlink.api";
+import { linkHistoryColDefs, ViewLinkGridContext } from "./viewlink.api";
 import { CommonModule } from "@angular/common";
+import { DisplayClick } from "../../models/click";
 
 @Component({
     selector: 'linkwire-viewlink',
@@ -28,6 +29,9 @@ export class ViewLinkComponent implements OnInit {
     linkID?: string | null;
 
     colDefs = linkHistoryColDefs;
+    context: ViewLinkGridContext = {
+        onViewDetails: this.handleViewDetails.bind(this),
+    };
 
     ngOnInit(): void {
         this.linkID = this.route.snapshot.paramMap.get('linkID');
@@ -39,5 +43,9 @@ export class ViewLinkComponent implements OnInit {
 
     handleBack(): void {
         this.router.navigate(['/dashboard']);
+    }
+
+    handleViewDetails(click: DisplayClick): void {
+
     }
 }

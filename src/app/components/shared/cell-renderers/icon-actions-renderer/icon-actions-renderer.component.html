@@ -1,0 +1,9 @@
+<div class="flex flex-row">
+    @for(action of params.actions; track action.iconClass) {
+        <i 
+            class="{{ action.iconClass }}" 
+            role="button"
+            (click)="action.onClick(params)"
+        ></i>
+    }
+</div>
