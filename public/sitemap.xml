@@ -8,17 +8,17 @@
 
 
 <url>
-  <loc>https://linkwire.cc/</loc>
+  <loc>https://app.linkwire.cc/</loc>
   <lastmod>1980-01-01T00:00:01+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://linkwire.cc/login</loc>
+  <loc>https://app.linkwire.cc/login</loc>
   <lastmod>1980-01-01T00:00:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://linkwire.cc/signup</loc>
+  <loc>https://app.linkwire.cc/signup</loc>
   <lastmod>1980-01-01T00:00:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
