@@ -1,0 +1,27 @@
+# Linkwire
+
+> Linkwire is a link intelligence and IP tracking platform that lets users create smart tracking links to capture visitor metadata — including IP address, geolocation, device info, browser, and referrer — when a link is clicked. It is a lightweight, cutting-edge alternative to Grabify, designed for developers, security researchers, and network administrators.
+ 
+Linkwire allows users to wrap any destination URL inside a trackable smart link. When the link is visited, Linkwire silently logs connection metadata before transparently redirecting the visitor to the intended destination. No malware, no phishing — purely passive connection data collection for legitimate use cases.
+ 
+Important notes:
+- Linkwire is intended for lawful purposes only: network diagnostics, security research, penetration testing with scope, and verifying where traffic originates from.
+- Users are responsible for complying with applicable privacy laws (GDPR, CCPA, etc.) when collecting visitor data.
+- Linkwire does not store link targets longer than the user's configured retention period.
+- Linkwire does not support cloaked redirects that impersonate other websites.
+
+## Core pages
+
+- [Home](https://app.linkwire.cc/) Main landing page with product overview.
+- [Login](https://app.linkwire.cc/login) Login page for existing users.
+- [Signup](https://app.linkwire.cc/signup) Signup page for new users.
+
+## Key Features
+
+- Link Creation: Wrapping a destination URL, choosing a slug, and setting expiration
+- Captured Data Fields: Full reference of all metadata fields — IP, ASN, geolocation, ISP, user-agent, device type, OS, browser, referrer, and timestamp
+- Real-Time Dashboard: Viewing and filtering click events in the web UI
+
+## Integrations
+
+- Email Notifications: Receive real-time alerts in your inbox when a tracking link is clicked.
