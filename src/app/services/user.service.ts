@@ -1,8 +1,9 @@
-import { Observable, of, tap } from "rxjs";
+import { Observable, tap } from "rxjs";
 import { User } from "../models/user";
 import { inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { LegacyApiResponse } from "../models/legacy-api-response";
+import { envConfig } from "../env-config";
 import { AuthService } from "./auth.service";
 
 @Injectable({
@@ -12,38 +13,30 @@ export class UserService {
     private http = inject(HttpClient);
     private authService = inject(AuthService);
 
-    login(username: string, password: string): Observable<LegacyApiResponse<User>> {
-        return this.http.post<LegacyApiResponse<User>>(
-            'https://linkwire.cc/user/verify', 
+    login(username: string, password: string): Observable<User> {
+        return this.http.post<User>(
+            `${envConfig.API_BASE_URL}/users/login`, 
             { 
                 username, 
                 password 
             }
         ).pipe(
-            tap(response => {
-                if (!!response.token) {
-                    this.authService.login(response.token, response.data.username);
-                }
-            })
+            tap(response => this.authService.login(response))
         );
     }
 
-    signup(username: string, email: string, password: string): Observable<LegacyApiResponse<User>> {
-        return this.http.post<LegacyApiResponse<User>>(
-            'https://linkwire.cc/user/create', 
+    signup(username: string, email: string, password: string): Observable<User> {
+        return this.http.post<User>(
+            `${envConfig.API_BASE_URL}/users/signup`, 
             { 
                 username, 
                 email, 
                 password 
             }
         ).pipe(
-            tap(response => {
-                if (!!response.token) {
-                    this.authService.login(response.token, response.data.username);
-                }
-            })
+            tap(response => this.authService.login(response))
         );
-    } 
+    }
 
     refreshUserData(username: string): Observable<LegacyApiResponse<User>> {
         return this.http.post<LegacyApiResponse<User>>(

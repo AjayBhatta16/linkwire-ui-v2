@@ -44,7 +44,7 @@ describe('UserEffects', () => {
 
   it('should dispatch userLoginSuccess when login succeeds', async () => {
     const userInfo = { username: 'u', email: 'e', premiumUser: false, links: [] };
-    userServiceMock.login.mockReturnValue(of({ data: userInfo }));
+    userServiceMock.login.mockReturnValue(of(userInfo));
 
     actions$ = of(userLogin({ username: 'u', password: 'p' }));
 
@@ -64,7 +64,7 @@ describe('UserEffects', () => {
 
   it('should dispatch userSignupSuccess when signup succeeds', async () => {
     const userInfo = { username: 'u', email: 'e', premiumUser: false, links: [] };
-    userServiceMock.signup.mockReturnValue(of({ data: userInfo }));
+    userServiceMock.signup.mockReturnValue(of(userInfo));
 
     actions$ = of(userSignup({ username: 'u', email: 'e', password: 'p' }));
 

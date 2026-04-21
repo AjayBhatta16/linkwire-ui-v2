@@ -1,8 +1,10 @@
+/// <reference types="jest" />
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { LegacyApiResponse } from '../models/legacy-api-response';
+import { User } from '../models/user';
 
 describe('UserService', () => {
   let service: UserService;
@@ -25,55 +27,41 @@ describe('UserService', () => {
     httpMock.verify();
   });
 
-  it('should call authService.login when login response contains token', (done) => {
-    const mockResponse: LegacyApiResponse<any> = {
-      data: { username: 'user' },
-      token: 'token',
-    };
+  it('should post login credentials to the login endpoint', (done) => {
+    const mockResponse: User = {
+      username: 'user',
+      email: '',
+      links: [],
+      premiumUser: false,
+    }
 
-    service.login('user', 'pass').subscribe((response) => {
+    service.login('user', 'password').subscribe((response) => {
       expect(response).toEqual(mockResponse);
-      expect(authMock.login).toHaveBeenCalledWith('token', 'user');
       done();
     });
 
-    const req = httpMock.expectOne('https://linkwire.cc/user/verify');
+    const req = httpMock.expectOne('https://linkwire-api-8a04bdoa.uk.gateway.dev/users/login');
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual({ username: 'user', password: 'pass' });
+    expect(req.request.body).toEqual({ username: 'user', password: 'password' });
     req.flush(mockResponse);
   });
 
-  it('should not call authService.login when login response has no token', (done) => {
-    const mockResponse: LegacyApiResponse<any> = {
-      data: { username: 'user' },
-      token: undefined,
-    };
+  it('should post signup data to the signup endpoint', (done) => {
+    const mockResponse: User = {
+      username: 'user',
+      email: '',
+      links: [],
+      premiumUser: false,
+    }
 
-    service.login('user', 'pass').subscribe((response) => {
+    service.signup('newuser', 'newuser@example.com', 'password123').subscribe((response) => {
       expect(response).toEqual(mockResponse);
-      expect(authMock.login).not.toHaveBeenCalled();
       done();
     });
 
-    const req = httpMock.expectOne('https://linkwire.cc/user/verify');
-    req.flush(mockResponse);
-  });
-
-  it('should call authService.login when signup response contains token', (done) => {
-    const mockResponse: LegacyApiResponse<any> = {
-      data: { username: 'user' },
-      token: 'token',
-    };
-
-    service.signup('user', 'user@example.com', 'pass').subscribe((response) => {
-      expect(response).toEqual(mockResponse);
-      expect(authMock.login).toHaveBeenCalledWith('token', 'user');
-      done();
-    });
-
-    const req = httpMock.expectOne('https://linkwire.cc/user/create');
+    const req = httpMock.expectOne('https://linkwire-api-8a04bdoa.uk.gateway.dev/users/signup');
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual({ username: 'user', email: 'user@example.com', password: 'pass' });
+    expect(req.request.body).toEqual({ username: 'newuser', email: 'newuser@example.com', password: 'password123' });
     req.flush(mockResponse);
   });
 

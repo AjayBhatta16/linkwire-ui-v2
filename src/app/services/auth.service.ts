@@ -4,6 +4,7 @@ import { authLogin, authLogout } from "../state/actions/auth.actions";
 import { AUTH_TOKEN_KEY, USERNAME_KEY } from "../utils/auth-utils";
 import { selectLoggedIn, selectToken } from "../state/selectors/auth.selectors";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { User } from "../models/user";
 
 @Injectable({
     providedIn: 'root'
@@ -26,14 +27,11 @@ export class AuthService {
     }
 
     logout(): void {
-        localStorage.removeItem(AUTH_TOKEN_KEY);
         localStorage.removeItem(USERNAME_KEY);
         this.store.dispatch(authLogout())
     }
 
-    login(token: string, username: string): void {
-        localStorage.setItem(AUTH_TOKEN_KEY, token);
-        localStorage.setItem(USERNAME_KEY, username);
-        this.store.dispatch(authLogin({ token }));
+    login(data: User): void {
+        localStorage.setItem(USERNAME_KEY, data.username);
     }
 }

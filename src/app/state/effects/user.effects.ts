@@ -15,7 +15,7 @@ export class UserEffects {
             switchMap(({ username, password }) => {
                 console.log('login event')
                 return this.userService.login(username, password).pipe(
-                    map(res => userLoginSuccess({ userInfo: res.data })),
+                    map(res => userLoginSuccess({ userInfo: res })),
                     catchError(error => of(userLoginFailure({ error })))
                 );
             })
@@ -27,7 +27,7 @@ export class UserEffects {
             ofType(userSignup),
             switchMap(({ username, email, password }) => 
                 this.userService.signup(username, email, password).pipe(
-                    map(res => userSignupSuccess({ userInfo: res.data })),
+                    map(res => userSignupSuccess({ userInfo: res })),
                     catchError(error => of(userSignupFailure({ error })))
                 )
             )
