@@ -19,7 +19,8 @@ export class UserService {
             { 
                 username, 
                 password 
-            }
+            },
+            { withCredentials: true }
         ).pipe(
             tap(response => this.authService.login(response))
         );
@@ -32,18 +33,17 @@ export class UserService {
                 username, 
                 email, 
                 password 
-            }
+            },
+            { withCredentials: true }
         ).pipe(
             tap(response => this.authService.login(response))
         );
     }
 
-    refreshUserData(username: string): Observable<LegacyApiResponse<User>> {
-        return this.http.post<LegacyApiResponse<User>>(
-            'https://linkwire.cc/user/info', 
-            {
-                username,
-            },
+    refreshUserData(username: string): Observable<User> {
+        return this.http.get<User>(
+            `${envConfig.API_BASE_URL}/username/${username}/links`,
+            { withCredentials: true }
         );
     }
 }

@@ -32,10 +32,8 @@ export class DashboardComponent implements OnInit {
     ngOnInit(): void {
         this.user$
             .pipe(take(1))
-            .subscribe(user => {
-                if (user == null) {
-                    this.facade.refreshUserData();
-                }
+            .subscribe(_ => {
+                this.facade.refreshUserData();
             });
     }
 
