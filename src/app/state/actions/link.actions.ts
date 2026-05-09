@@ -5,6 +5,7 @@ const actionNames = {
     CREATE_LINK: "[Link] Create Link",
     CREATE_LINK_SUCCESS: "[Link] Create Link Success",
     CREATE_LINK_FAILURE: "[Link] Create Link Failure",
+    CLEAR_SELECTED_LINK: "[Link] Clear Selected Link",
     FETCH_LINK_DETAILS: "[Link] Fetch Link Details",
     FETCH_LINK_DETAILS_SUCCESS: "[Link] Fetch Link Details Success",
     FETCH_LINK_DETAILS_FAILURE: "[Link] Fetch Link Details Failure",
@@ -29,6 +30,10 @@ export const createLinkFailure = createAction(
     props<{
         error: any;
     }>()
+);
+
+export const clearSelectedLink = createAction(
+    actionNames.CLEAR_SELECTED_LINK
 );
 
 export const fetchLinkDetails = createAction(

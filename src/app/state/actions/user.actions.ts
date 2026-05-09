@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { User } from "../../models/user";
+import { Link } from "../../models/link";
 
 const actionNames = {
     USER_LOGIN: "[User] User Login",
@@ -68,7 +69,7 @@ export const userDataRefreshRequest = createAction(
 export const userDataRefreshSuccess = createAction(
     actionNames.USER_DATA_REFRESH_SUCCESS,
     props<{
-        userInfo: User;
+        links: Link[];
     }>()
 );
 

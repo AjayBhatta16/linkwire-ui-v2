@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://linkwire-api-8a04bdoa.uk.gateway.dev",
+    "changeOrigin": true,
+    "secure": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

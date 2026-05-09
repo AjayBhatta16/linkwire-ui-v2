@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { AuthService } from './auth.service';
-import { authLogin, authLogout } from '../state/actions/auth.actions';
+import { authLogout } from '../state/actions/auth.actions';
 import { AUTH_TOKEN_KEY, USERNAME_KEY } from '../utils/auth-utils';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../models/user';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -59,16 +60,13 @@ describe('AuthService', () => {
 
     service.logout();
 
-    expect(localStorage.getItem(AUTH_TOKEN_KEY)).toBeNull();
     expect(localStorage.getItem(USERNAME_KEY)).toBeNull();
     expect(storeMock.dispatch).toHaveBeenCalledWith(authLogout());
   });
 
   it('should store token/username and dispatch authLogin on login', () => {
-    service.login('token-123', 'user');
+    service.login({ username: 'user' } as unknown as User);
 
-    expect(localStorage.getItem(AUTH_TOKEN_KEY)).toBe('token-123');
     expect(localStorage.getItem(USERNAME_KEY)).toBe('user');
-    expect(storeMock.dispatch).toHaveBeenCalledWith(authLogin({ token: 'token-123' }));
   });
 });

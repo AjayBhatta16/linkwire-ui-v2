@@ -11,6 +11,7 @@ export const {
 export const selectDisplayLinks = createSelector(
     selectUser, 
     (user) => {
+        console.log(user)
         return toDisplayData(user?.links || []);
     }
 )

@@ -14,7 +14,7 @@ export class LinkEffects {
             ofType(createLink),
             switchMap(({ link }) => {
                 return this.linkService.createLink(link).pipe(
-                    map(res => createLinkSuccess({ link: res.data })),
+                    map(res => createLinkSuccess({ link: res })),
                     catchError(error => of(createLinkFailure({ error })))
                 );
             })
@@ -26,7 +26,7 @@ export class LinkEffects {
             ofType(fetchLinkDetails),
             switchMap(({ linkId }) => {
                 return this.linkService.fetchLink(linkId).pipe(
-                    map(res => fetchLinkDetailsSuccess({ link: res.data })),
+                    map(res => fetchLinkDetailsSuccess({ link: res })),
                     catchError(error => of(fetchLinkDetailsFailure({ error })))
                 );
             })

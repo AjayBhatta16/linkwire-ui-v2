@@ -20,7 +20,7 @@ describe('LinkService', () => {
     httpMock.verify();
   });
 
-  it('should create link via POST to /link/create', (done) => {
+  it('should create link via POST to /api/links', (done) => {
     const request: CreateLinkRequest = {
       redirectURL: 'https://example.com',
       note: 'note',
@@ -36,20 +36,18 @@ describe('LinkService', () => {
       clicks: [],
     };
 
-    const mockResponse = { data: mockLink, token: undefined };
-
     service.createLink(request).subscribe((response) => {
-      expect(response).toEqual(mockResponse);
+      expect(response).toEqual(mockLink);
       done();
     });
 
-    const req = httpMock.expectOne('https://linkwire.cc/link/create');
+    const req = httpMock.expectOne('/api/links');
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(request);
-    req.flush(mockResponse);
+    req.flush(mockLink);
   });
 
-  it('should fetch link via GET to /links/:id', (done) => {
+  it('should fetch link via GET to /api/links/:id', (done) => {
     const mockLink = {
       trackingID: 't',
       displayID: 'd',
@@ -60,15 +58,13 @@ describe('LinkService', () => {
       clicks: [],
     };
 
-    const mockResponse = { data: mockLink, token: undefined };
-
     service.fetchLink('abc').subscribe((response) => {
-      expect(response).toEqual(mockResponse);
+      expect(response).toEqual(mockLink);
       done();
     });
 
-    const req = httpMock.expectOne('https://linkwire.cc/links/abc');
+    const req = httpMock.expectOne('/api/links/abc');
     expect(req.request.method).toBe('GET');
-    req.flush(mockResponse);
+    req.flush(mockLink);
   });
 });

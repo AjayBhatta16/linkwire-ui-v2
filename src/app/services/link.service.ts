@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { CreateLinkRequest, Link } from "../models/link";
 import { Observable } from "rxjs";
-import { LegacyApiResponse } from "../models/legacy-api-response";
+import { environment } from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -10,16 +10,16 @@ import { LegacyApiResponse } from "../models/legacy-api-response";
 export class LinkService {
     private http = inject(HttpClient);
 
-    createLink(link: CreateLinkRequest): Observable<LegacyApiResponse<Link>> {
-        return this.http.post<LegacyApiResponse<Link>>(
-            'https://linkwire.cc/link/create',
+    createLink(link: CreateLinkRequest): Observable<Link> {
+        return this.http.post<Link>(
+            `${environment.API_BASE_URL}/links`,
             link
         );
     }
 
-    fetchLink(linkId: string): Observable<LegacyApiResponse<Link>> {
-        return this.http.get<LegacyApiResponse<Link>>(
-            `https://linkwire.cc/links/${linkId}`
+    fetchLink(linkId: string): Observable<Link> {
+        return this.http.get<Link>(
+            `${environment.API_BASE_URL}/links/${linkId}`
         );
     }
 }

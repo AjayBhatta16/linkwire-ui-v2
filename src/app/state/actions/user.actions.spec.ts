@@ -1,3 +1,4 @@
+import { Link } from '../../models/link';
 import {
   userLogin,
   userLoginSuccess,
@@ -68,11 +69,11 @@ describe('User Actions', () => {
   });
 
   it('should create userDataRefreshSuccess action with correct payload', () => {
-    const payload = { username: 'u', email: 'e', premiumUser: false, links: [] };
-    const action = userDataRefreshSuccess({ userInfo: payload });
+    const payload = [{} as Link];
+    const action = userDataRefreshSuccess({ links: payload });
 
     expect(action.type).toBe('[User] User Data Refresh Success');
-    expect(action.userInfo).toBe(payload);
+    expect(action.links).toBe(payload);
   });
 
   it('should create userDataRefreshFailure action with correct payload', () => {

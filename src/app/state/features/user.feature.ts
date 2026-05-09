@@ -73,9 +73,12 @@ export const userFeature = createFeature({
             loading: true,
             error: null,
         })),
-        on(userDataRefreshSuccess, (state, { userInfo }) => ({
+        on(userDataRefreshSuccess, (state, { links }) => ({
             ...state,
-            user: userInfo,
+            user: {
+                ...state.user as User,
+                links
+            },
             loading: false,
             error: null,
         })),
