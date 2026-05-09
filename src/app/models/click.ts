@@ -21,7 +21,7 @@ export type DisplayClick = Click & {
 }
 
 export function toDisplayClickData(clicks: Click[]): DisplayClick[] {
-    return clicks
+    return [...clicks]
         .sort((a, b) => b.timestamp - a.timestamp)
         .map((click, index) => ({
             ...click,
