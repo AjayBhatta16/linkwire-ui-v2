@@ -99,10 +99,14 @@ describe('User Feature Reducer', () => {
     expect(nextState.error).toBeNull();
   });
 
-  it('should set user on userDataRefreshSuccess', () => {
-    const nextState = userFeature.reducer(initialUserState, userDataRefreshSuccess({ userInfo: sampleUser as any }));
+  it('should update existing user links on userDataRefreshSuccess', () => {
+    const stateWithUser = { ...initialUserState, user: { ...sampleUser, links: [] } };
+    const nextState = userFeature.reducer(stateWithUser, userDataRefreshSuccess({ links: [sampleLink as any] }));
 
-    expect(nextState.user).toBe(sampleUser);
+    expect(nextState.user).toEqual({
+      ...sampleUser,
+      links: [sampleLink],
+    });
     expect(nextState.loading).toBe(false);
     expect(nextState.error).toBeNull();
   });

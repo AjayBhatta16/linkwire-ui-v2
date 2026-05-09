@@ -3,7 +3,6 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
-import { LegacyApiResponse } from '../models/legacy-api-response';
 import { User } from '../models/user';
 
 describe('UserService', () => {
@@ -40,7 +39,7 @@ describe('UserService', () => {
       done();
     });
 
-    const req = httpMock.expectOne('https://linkwire-api-8a04bdoa.uk.gateway.dev/users/login');
+    const req = httpMock.expectOne('/api/users/login');
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({ username: 'user', password: 'password' });
     req.flush(mockResponse);
@@ -59,26 +58,32 @@ describe('UserService', () => {
       done();
     });
 
-    const req = httpMock.expectOne('https://linkwire-api-8a04bdoa.uk.gateway.dev/users/signup');
+    const req = httpMock.expectOne('/api/users/signup');
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({ username: 'newuser', email: 'newuser@example.com', password: 'password123' });
     req.flush(mockResponse);
   });
 
-  it('should return refresh user data response', (done) => {
-    const mockResponse: LegacyApiResponse<any> = {
-      data: { username: 'user' },
-      token: undefined,
-    };
+  it('should return refresh user data response as links', (done) => {
+    const mockLinks = [
+      {
+        trackingID: 't',
+        displayID: 'd',
+        redirectURL: 'https://example.com',
+        note: 'note',
+        useLogin: false,
+        createdBy: 'user',
+        clicks: [],
+      },
+    ];
 
     service.refreshUserData('user').subscribe((response) => {
-      expect(response).toEqual(mockResponse);
+      expect(response).toEqual(mockLinks);
       done();
     });
 
-    const req = httpMock.expectOne('https://linkwire.cc/user/info');
-    expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual({ username: 'user' });
-    req.flush(mockResponse);
+    const req = httpMock.expectOne('/api/username/user/links');
+    expect(req.request.method).toBe('GET');
+    req.flush(mockLinks);
   });
 });

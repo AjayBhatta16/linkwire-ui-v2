@@ -83,13 +83,13 @@ describe('UserEffects', () => {
   });
 
   it('should dispatch userDataRefreshSuccess when refresh succeeds', async () => {
-    const userInfo = { username: 'u', email: 'e', premiumUser: false, links: [] };
-    userServiceMock.refreshUserData.mockReturnValue(of({ data: userInfo }));
+    const userLinks = [{ trackingID: 't', displayID: 'd', redirectURL: 'https://example.com', note: 'note', useLogin: false, createdBy: 'user', clicks: [] }];
+    userServiceMock.refreshUserData.mockReturnValue(of(userLinks));
 
     actions$ = of(userDataRefreshRequest({ username: 'u' }));
 
     const result = await firstValueFrom(effects.refreshUserData$);
-    expect(result).toEqual(userDataRefreshSuccess({ userInfo }));
+    expect(result).toEqual(userDataRefreshSuccess({ links: userLinks }));
   });
 
   it('should dispatch userDataRefreshFailure when refresh fails', async () => {

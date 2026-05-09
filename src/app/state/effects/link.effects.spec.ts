@@ -48,14 +48,13 @@ describe('LinkEffects', () => {
   });
 
   it('should dispatch createLinkSuccess when createLink succeeds', async () => {
-    linkServiceMock.createLink.mockReturnValue(of({ data: sampleLink }));
+    linkServiceMock.createLink.mockReturnValue(of(sampleLink));
 
     actions$ = of(createLink({ link: { redirectURL: 'a', note: 'b' } }));
 
     const result = await firstValueFrom(effects.createLink$);
     expect(result).toEqual(createLinkSuccess({ link: sampleLink }));
   });
-
   it('should dispatch createLinkFailure when createLink fails', async () => {
     const error = new Error('fail');
     linkServiceMock.createLink.mockReturnValue(throwError(() => error));
@@ -67,7 +66,7 @@ describe('LinkEffects', () => {
   });
 
   it('should dispatch fetchLinkDetailsSuccess when fetchLinkDetails succeeds', async () => {
-    linkServiceMock.fetchLink.mockReturnValue(of({ data: sampleLink }));
+    linkServiceMock.fetchLink.mockReturnValue(of(sampleLink));
 
     actions$ = of(fetchLinkDetails({ linkId: '123' }));
 
