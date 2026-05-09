@@ -4,6 +4,7 @@ import { inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "./auth.service";
 import { Link } from "../models/link";
+import { environment } from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,7 @@ export class UserService {
 
     login(username: string, password: string): Observable<User> {
         return this.http.post<User>(
-            `/api/users/login`, 
+            `${environment.API_BASE_URL}/users/login`, 
             { 
                 username, 
                 password 
@@ -27,7 +28,7 @@ export class UserService {
 
     signup(username: string, email: string, password: string): Observable<User> {
         return this.http.post<User>(
-            `/api/users/signup`, 
+            `${environment.API_BASE_URL}/users/signup`, 
             { 
                 username, 
                 email, 
@@ -41,7 +42,7 @@ export class UserService {
 
     refreshUserData(username: string): Observable<Link[]> {
         return this.http.get<Link[]>(
-            `/api/username/${username}/links`,
+            `${environment.API_BASE_URL}/username/${username}/links`,
             { withCredentials: true }
         );
     }
