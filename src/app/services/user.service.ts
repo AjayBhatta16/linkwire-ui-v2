@@ -2,9 +2,8 @@ import { Observable, tap } from "rxjs";
 import { User } from "../models/user";
 import { inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { LegacyApiResponse } from "../models/legacy-api-response";
-import { envConfig } from "../env-config";
 import { AuthService } from "./auth.service";
+import { Link } from "../models/link";
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +14,7 @@ export class UserService {
 
     login(username: string, password: string): Observable<User> {
         return this.http.post<User>(
-            `${envConfig.API_BASE_URL}/users/login`, 
+            `/api/users/login`, 
             { 
                 username, 
                 password 
@@ -28,7 +27,7 @@ export class UserService {
 
     signup(username: string, email: string, password: string): Observable<User> {
         return this.http.post<User>(
-            `${envConfig.API_BASE_URL}/users/signup`, 
+            `/api/users/signup`, 
             { 
                 username, 
                 email, 
@@ -40,9 +39,9 @@ export class UserService {
         );
     }
 
-    refreshUserData(username: string): Observable<User> {
-        return this.http.get<User>(
-            `${envConfig.API_BASE_URL}/username/${username}/links`,
+    refreshUserData(username: string): Observable<Link[]> {
+        return this.http.get<Link[]>(
+            `/api/username/${username}/links`,
             { withCredentials: true }
         );
     }

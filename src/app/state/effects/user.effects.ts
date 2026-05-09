@@ -39,7 +39,7 @@ export class UserEffects {
             ofType(userDataRefreshRequest),
             switchMap(({ username }) => 
                 this.userService.refreshUserData(username).pipe(
-                    map(res => userDataRefreshSuccess({ userInfo: res })),
+                    map(res => userDataRefreshSuccess({ links: res })),
                     catchError(error => of(userDataRefreshFailure({ error })))
                 )
             )
