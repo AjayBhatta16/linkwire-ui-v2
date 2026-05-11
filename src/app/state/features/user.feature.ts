@@ -36,7 +36,10 @@ export const userFeature = createFeature({
         })),
         on(userLoginSuccess, (state, { userInfo }) => ({
             ...state,
-            user: userInfo,
+            user: {
+                ...userInfo,
+                links: [],
+            },
             loading: false,
             error: null,
         })),
