@@ -13,13 +13,15 @@ export class LinkService {
     createLink(link: CreateLinkRequest): Observable<Link> {
         return this.http.post<Link>(
             `${environment.API_BASE_URL}/links`,
-            link
+            link,
+            { withCredentials: true }
         );
     }
 
     fetchLink(linkId: string): Observable<Link> {
         return this.http.get<Link>(
-            `${environment.API_BASE_URL}/links/${linkId}`
+            `${environment.API_BASE_URL}/links/${linkId}`,
+            { withCredentials: true }
         );
     }
 }
