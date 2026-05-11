@@ -2,7 +2,7 @@ import { inject, Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { selectDisplayLinks, selectUser } from "../../state/selectors/user.selector";
 import { selectError, selectLink, selectLoading } from "../../state/selectors/link.selectors";
-import { createLink } from "../../state/actions/link.actions";
+import { clearSelectedLink, createLink } from "../../state/actions/link.actions";
 import { AuthService } from "../../services/auth.service";
 import { userDataRefreshRequest } from "../../state/actions/user.actions";
 
@@ -33,5 +33,9 @@ export class DashboardFacade {
         if (username) {
             this.store.dispatch(userDataRefreshRequest({ username }));
         }
+    }
+
+    clearSelectedLink(): void {
+        this.store.dispatch(clearSelectedLink());
     }
 }

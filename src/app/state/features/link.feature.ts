@@ -37,6 +37,8 @@ export const linkFeature = createFeature({
         on(clearSelectedLink, (state) => ({
             ...state,
             link: null,
+            error: null,
+            loading: false,
         })),
         on(fetchLinkDetails, (state) => ({
             ...state,
