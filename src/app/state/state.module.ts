@@ -6,6 +6,8 @@ import { userFeature } from "./features/user.feature";
 import { HttpClientModule } from "@angular/common/http";
 import { linkFeature } from "./features/link.feature";
 import { LinkEffects } from "./effects/link.effects";
+import { passwordResetFeature } from "./features/password-reset.feature";
+import { PasswordResetEffects } from "./effects/password-reset.effects";
 
 @NgModule({
     imports: [
@@ -15,10 +17,12 @@ import { LinkEffects } from "./effects/link.effects";
         provideStore({
             [userFeature.name]: userFeature.reducer,
             [linkFeature.name]: linkFeature.reducer,
+            [passwordResetFeature.name]: passwordResetFeature.reducer,
         }),
         provideEffects([
             UserEffects,
             LinkEffects,
+            PasswordResetEffects,
         ])
     ]
 })
