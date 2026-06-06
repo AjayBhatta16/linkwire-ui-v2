@@ -28,6 +28,12 @@
                     formControlName="password"
                 >
             </mat-form-field>
+            <br/>
+            <div class="d-flex align-items-center" style="max-width: 340px;">
+                <mat-checkbox formControlName="agreedToLatestTerms">
+                    I agree to the <a href="/terms_and_conditions.pdf" target="_blank">terms and conditions</a> and <a href="/privacy_policy.pdf" target="_blank">privacy policy</a>.
+                </mat-checkbox>
+            </div>
             <div class="mt-0 mb-2">
                 <a [routerLink]="['/login']" class="mr-3"><small>Already have an Account? Log In</small></a>
             </div>

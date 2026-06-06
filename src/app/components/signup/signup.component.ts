@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, DestroyRef, inject, OnInit } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { Router, RouterModule } from "@angular/router";
@@ -16,6 +17,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
     imports: [
         CommonModule,
         MatButtonModule,
+        MatCheckboxModule,
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
@@ -50,6 +52,7 @@ export class SignupComponent implements OnInit {
         username: new FormControl('', { validators: [Validators.required] }),
         email: new FormControl('', { validators: [Validators.required, Validators.email] }),
         password: new FormControl('', { validators: [Validators.required] }),
+        agreedToLatestTerms: new FormControl(false, { validators: [Validators.requiredTrue] }),
     });
 
     ngOnInit(): void {
@@ -79,6 +82,11 @@ export class SignupComponent implements OnInit {
 
         if (this.form.get('password')?.invalid) {
             this.validationErrorSubject.next('Password is required.');
+            return;
+        }
+
+        if (this.form.get('agreedToLatestTerms')?.invalid) {
+            this.validationErrorSubject.next('You must agree to the terms and conditions.');
             return;
         }
 
