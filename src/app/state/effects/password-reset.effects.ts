@@ -15,7 +15,7 @@ export class PasswordResetEffects {
             switchMap((dto) => 
                 this.passwordResetService.postPasswordResetRequest(dto).pipe(
                     map(() => postPasswordResetRequestSuccess()),
-                    catchError(error => of(postPasswordResetRequestFailure({ error })))
+                    catchError(error => of(postPasswordResetRequestFailure({ error: error.error })))
                 )
             )
         )
