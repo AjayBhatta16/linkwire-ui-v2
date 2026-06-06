@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RedirectComponent } from './components/redirect/redirect.component';
 import { ViewLinkComponent } from './components/viewlink/viewlink.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { PasswordResetsComponent } from './components/password-resets/password-resets.component';
 
 /**
  * Matches URLs of the form /<6-digit-code>/... (requires at least one path segment after the code)
@@ -32,6 +33,7 @@ export const routes: Routes = [
 	{ path: 'dashboard', component: DashboardComponent, title: 'LinkWire - Dashboard' },
     { path: 'forgot-password', component: ForgotPasswordComponent, title: 'LinkWire - Forgot Password' },
     { path: 'viewlink/:linkID', component: ViewLinkComponent, title: 'LinkWire - View Link' },
+    { path: 'password-resets/:requestId', component: PasswordResetsComponent, title: 'LinkWire - Password Reset' },
 	{ 
         matcher: sixDigitCodeMatcher, 
         component: RedirectComponent,
