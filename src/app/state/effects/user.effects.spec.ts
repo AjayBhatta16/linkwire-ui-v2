@@ -54,7 +54,8 @@ describe('UserEffects', () => {
 
   it('should dispatch userLoginFailure when login fails', async () => {
     const error = new Error('fail');
-    userServiceMock.login.mockReturnValue(throwError(() => error));
+    const apiError = { error };
+    userServiceMock.login.mockReturnValue(throwError(() => apiError));
 
     actions$ = of(userLogin({ username: 'u', password: 'p' }));
 
@@ -74,7 +75,8 @@ describe('UserEffects', () => {
 
   it('should dispatch userSignupFailure when signup fails', async () => {
     const error = new Error('fail');
-    userServiceMock.signup.mockReturnValue(throwError(() => error));
+    const apiError = { error };
+    userServiceMock.signup.mockReturnValue(throwError(() => apiError));
 
     actions$ = of(userSignup({ username: 'u', email: 'e', password: 'p' }));
 
@@ -94,7 +96,8 @@ describe('UserEffects', () => {
 
   it('should dispatch userDataRefreshFailure when refresh fails', async () => {
     const error = new Error('fail');
-    userServiceMock.refreshUserData.mockReturnValue(throwError(() => error));
+    const apiError = { error };
+    userServiceMock.refreshUserData.mockReturnValue(throwError(() => apiError));
 
     actions$ = of(userDataRefreshRequest({ username: 'u' }));
 

@@ -16,7 +16,7 @@ export class UserEffects {
                 console.log('login event')
                 return this.userService.login(username, password).pipe(
                     map(res => userLoginSuccess({ userInfo: res })),
-                    catchError(error => of(userLoginFailure({ error })))
+                    catchError(error => of(userLoginFailure({ error: error.error })))
                 );
             })
         )
@@ -28,7 +28,7 @@ export class UserEffects {
             switchMap(({ username, email, password }) => 
                 this.userService.signup(username, email, password).pipe(
                     map(res => userSignupSuccess({ userInfo: res })),
-                    catchError(error => of(userSignupFailure({ error })))
+                    catchError(error => of(userSignupFailure({ error: error.error })))
                 )
             )
         )
@@ -40,7 +40,7 @@ export class UserEffects {
             switchMap(({ username }) => 
                 this.userService.refreshUserData(username).pipe(
                     map(res => userDataRefreshSuccess({ links: res })),
-                    catchError(error => of(userDataRefreshFailure({ error })))
+                    catchError(error => of(userDataRefreshFailure({ error: error.error })))
                 )
             )
         )

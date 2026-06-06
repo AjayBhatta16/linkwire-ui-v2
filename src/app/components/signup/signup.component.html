@@ -47,6 +47,7 @@
                     type="submit" 
                     mat-raised-button 
                     color="primary"
+                    [disabled]="(loading$ | async) ?? false"
                 >Sign Up</button>
             </div>
         </form>
