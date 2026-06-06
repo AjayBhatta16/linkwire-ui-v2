@@ -26,12 +26,12 @@ export function sixDigitCodeMatcher(segments: UrlSegment[]): UrlMatchResult | nu
 
 // TODO: make this work with file paths after the code (eg APP_URI/ABC123/screenshot.png)
 export const routes: Routes = [
-	{ path: '', component: LandingPageComponent, pathMatch: 'full' },
-	{ path: 'login', component: LoginComponent },
-	{ path: 'signup', component: SignupComponent },
-	{ path: 'dashboard', component: DashboardComponent },
-    { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'viewlink/:linkID', component: ViewLinkComponent },
+	{ path: '', component: LandingPageComponent, pathMatch: 'full', title: 'LinkWire - Home' },
+	{ path: 'login', component: LoginComponent, title: 'LinkWire - Login' },
+	{ path: 'signup', component: SignupComponent, title: 'LinkWire - Sign Up' },
+	{ path: 'dashboard', component: DashboardComponent, title: 'LinkWire - Dashboard' },
+    { path: 'forgot-password', component: ForgotPasswordComponent, title: 'LinkWire - Forgot Password' },
+    { path: 'viewlink/:linkID', component: ViewLinkComponent, title: 'LinkWire - View Link' },
 	{ 
         matcher: sixDigitCodeMatcher, 
         component: RedirectComponent,
