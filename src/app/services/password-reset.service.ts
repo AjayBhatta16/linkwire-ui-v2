@@ -16,4 +16,10 @@ export class PasswordResetService {
             request
         );
     }
+
+    validatePasswordResetRequest(token: string): Observable<Partial<PasswordResetRequest>> {
+        return this.http.get<Partial<PasswordResetRequest>>(
+            `${environment.API_BASE_URL}/reset-request/${token}`
+        );
+    }
 }
