@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { PasswordResetRequest, ResetRequestDTO } from "../models/password-reset-request";
+import { PasswordResetRequest, ResetRequestDTO, ValidateResetRequestResponseDTO } from "../models/password-reset-request";
 import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
 
@@ -17,8 +17,8 @@ export class PasswordResetService {
         );
     }
 
-    validatePasswordResetRequest(token: string): Observable<Partial<PasswordResetRequest>> {
-        return this.http.get<Partial<PasswordResetRequest>>(
+    validatePasswordResetRequest(token: string): Observable<ValidateResetRequestResponseDTO> {
+        return this.http.get<ValidateResetRequestResponseDTO>(
             `${environment.API_BASE_URL}/reset-request/${token}`
         );
     }

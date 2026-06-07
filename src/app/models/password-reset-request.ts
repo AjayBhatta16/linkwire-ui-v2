@@ -10,3 +10,7 @@ export type PasswordResetRequest = {
 export type ResetRequestDTO = {
     email: string;
 }
+
+export type ValidateResetRequestResponseDTO = {
+    username: string;
+}

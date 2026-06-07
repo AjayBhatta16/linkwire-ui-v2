@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store"
-import { PasswordResetRequest } from "../../models/password-reset-request";
+import { PasswordResetRequest, ValidateResetRequestResponseDTO } from "../../models/password-reset-request";
 
 const actionNames = {
     POST_PASSWORD_RESET_REQUEST: '[Password Reset] Post Password Reset Request',
@@ -38,7 +38,7 @@ export const validatePasswordResetRequest = createAction(
 export const validatePasswordResetRequestSuccess = createAction(
     actionNames.VALIDATE_PASSWORD_RESET_REQUEST_SUCCESS,
     props<{
-        requestData: Partial<PasswordResetRequest>;
+        requestData: ValidateResetRequestResponseDTO;
     }>()
 );
 

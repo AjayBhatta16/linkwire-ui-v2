@@ -7,13 +7,13 @@ import {
     validatePasswordResetRequestFailure,
     validatePasswordResetRequestSuccess
 } from "../actions/password-reset.actions";
-import { PasswordResetRequest } from "../../models/password-reset-request";
+import { ValidateResetRequestResponseDTO } from "../../models/password-reset-request";
 
 interface PasswordResetState {
     loading: boolean;
     error: string | null;
     success: boolean;
-    activeResetRequest: Partial<PasswordResetRequest> | null;
+    activeResetRequest: ValidateResetRequestResponseDTO | null;
 }
 
 export const initialPasswordResetState: PasswordResetState = {
@@ -62,7 +62,7 @@ export const passwordResetFeature = createFeature({
         on(validatePasswordResetRequestFailure, (state, { error }) => ({
             ...state,
             loading: false,
-            error,
+            error: error.trim(),
             success: false,
         }))
     )
