@@ -59,7 +59,7 @@ export const passwordResetFeature = createFeature({
             ...state,
             loading: false,
             error: null,
-            success: true,
+            success: false,
             activeResetRequest: requestData,
         })),
         on(validatePasswordResetRequestFailure, (state, { error }) => ({

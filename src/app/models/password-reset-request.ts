@@ -16,6 +16,6 @@ export type ValidateResetRequestResponseDTO = {
 }
 
 export type UpdateUserPasswordRequestDTO = {
-    requestId: string;
+    resetRequestId: string;
     newPassword: string;
 }
