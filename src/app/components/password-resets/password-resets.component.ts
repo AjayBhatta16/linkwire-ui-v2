@@ -1,10 +1,14 @@
 import { Component, computed, inject, OnInit } from "@angular/core";
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ActivatedRoute } from "@angular/router";
 import { PasswordResetsFacade } from "./password-resets.facade";
 import { CommonModule } from "@angular/common";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { FailureStatusJumbotronComponent } from "../shared/status-messages/failure-status-jumbotron/failure-status-jumbotron.component";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
     selector: "linkwire-password-resets",
@@ -12,6 +16,9 @@ import { toSignal } from "@angular/core/rxjs-interop";
     imports: [
         CommonModule,
         FailureStatusJumbotronComponent,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
         ReactiveFormsModule,
     ],
     providers: [PasswordResetsFacade],
@@ -25,6 +32,9 @@ export class PasswordResetsComponent implements OnInit {
 
     activeResetRequest = toSignal(this.facade.activeResetRequest$);
     error = toSignal(this.facade.error$);
+
+    validationErrorSubject = new BehaviorSubject<string | null>(null);
+    validationError$ = this.validationErrorSubject.asObservable();
 
     errorDetailMessage = computed(() => {
         const error = this.error();
@@ -44,6 +54,11 @@ export class PasswordResetsComponent implements OnInit {
         return 'An unexpected error occurred. Please try again later.';
     });
 
+    form: FormGroup = new FormGroup({
+        password: new FormControl('', { validators: [Validators.required] }),
+        confirmPassword: new FormControl('', { validators: [Validators.required] }),
+    });
+
     ngOnInit(): void {
         this.requestId = this.parseRequestId();
         
@@ -60,5 +75,27 @@ export class PasswordResetsComponent implements OnInit {
         } 
 
         return undefined;
+    }
+
+    onSubmit() {
+        if (this.form.get('password')?.invalid) {
+            this.validationErrorSubject.next('Password is required.');
+            return;
+        }
+
+        if (this.form.get('confirmPassword') != this.form.get('password')) {
+            this.validationErrorSubject.next('Passwords do not match.');
+            return;
+        }
+
+        this.validationErrorSubject.next(null);
+
+        const { password } = this.form.value;
+
+        this.updateUserPassword(password);
+    }
+
+    updateUserPassword(password: string) {
+
     }
 }
