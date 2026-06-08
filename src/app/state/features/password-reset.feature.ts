@@ -5,7 +5,10 @@ import {
     postPasswordResetRequestSuccess,
     validatePasswordResetRequest,
     validatePasswordResetRequestFailure,
-    validatePasswordResetRequestSuccess
+    validatePasswordResetRequestSuccess,
+    updateUserPassword,
+    updateUserPasswordSuccess,
+    updateUserPasswordFailure
 } from "../actions/password-reset.actions";
 import { ValidateResetRequestResponseDTO } from "../../models/password-reset-request";
 
@@ -64,6 +67,24 @@ export const passwordResetFeature = createFeature({
             loading: false,
             error: error.trim(),
             success: false,
+        })),
+        on(updateUserPassword, (state) => ({
+            ...state,
+            loading: true,
+            error: null,
+            success: false
+        })),
+        on(updateUserPasswordSuccess, (state) => ({
+            ...state,
+            loading: false,
+            error: null,
+            success: true
+        })),
+        on(updateUserPasswordFailure, (state, { error }) => ({
+            ...state,
+            loading: false,
+            error: error.trim(),
+            success: false
         }))
     )
 });

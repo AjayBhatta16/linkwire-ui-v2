@@ -5,6 +5,9 @@ import {
     postPasswordResetRequest, 
     postPasswordResetRequestFailure, 
     postPasswordResetRequestSuccess, 
+    updateUserPassword, 
+    updateUserPasswordFailure, 
+    updateUserPasswordSuccess, 
     validatePasswordResetRequest, 
     validatePasswordResetRequestFailure,
     validatePasswordResetRequestSuccess 
@@ -35,6 +38,18 @@ export class PasswordResetEffects {
                 this.passwordResetService.validatePasswordResetRequest(token).pipe(
                     map(requestData => validatePasswordResetRequestSuccess({ requestData })),
                     catchError(error => of(validatePasswordResetRequestFailure({ error: error.error })))
+                )
+            )
+        )
+    );
+
+    updateUserPassword$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(updateUserPassword),
+            switchMap(({ username, body }) => 
+                this.passwordResetService.updateUserPassword(username, body).pipe(
+                    map(user => updateUserPasswordSuccess({ user })),
+                    catchError(error => of(updateUserPasswordFailure({ error: error.error })))
                 )
             )
         )

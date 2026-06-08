@@ -12,6 +12,7 @@ import {
     userSignupSuccess 
 } from "../actions/user.actions";
 import { createLinkSuccess } from "../actions/link.actions";
+import { updateUserPasswordSuccess } from "../actions/password-reset.actions";
 
 interface UserState {
     user: User | null;
@@ -89,6 +90,10 @@ export const userFeature = createFeature({
             ...state,
             loading: false,
             error,
+        })),
+        on(updateUserPasswordSuccess, (state, { user }) => ({
+            ...state,
+            user
         }))
     )
 });
