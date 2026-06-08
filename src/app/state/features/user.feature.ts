@@ -90,10 +90,6 @@ export const userFeature = createFeature({
             ...state,
             loading: false,
             error,
-        })),
-        on(updateUserPasswordSuccess, (state, { user }) => ({
-            ...state,
-            user
         }))
     )
 });
