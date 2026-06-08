@@ -5,6 +5,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RedirectComponent } from './components/redirect/redirect.component';
 import { ViewLinkComponent } from './components/viewlink/viewlink.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { PasswordResetsComponent } from './components/password-resets/password-resets.component';
 
 /**
  * Matches URLs of the form /<6-digit-code>/... (requires at least one path segment after the code)
@@ -25,11 +27,13 @@ export function sixDigitCodeMatcher(segments: UrlSegment[]): UrlMatchResult | nu
 
 // TODO: make this work with file paths after the code (eg APP_URI/ABC123/screenshot.png)
 export const routes: Routes = [
-	{ path: '', component: LandingPageComponent, pathMatch: 'full' },
-	{ path: 'login', component: LoginComponent },
-	{ path: 'signup', component: SignupComponent },
-	{ path: 'dashboard', component: DashboardComponent },
-    { path: 'viewlink/:linkID', component: ViewLinkComponent },
+	{ path: '', component: LandingPageComponent, pathMatch: 'full', title: 'LinkWire - Home' },
+	{ path: 'login', component: LoginComponent, title: 'LinkWire - Login' },
+	{ path: 'signup', component: SignupComponent, title: 'LinkWire - Sign Up' },
+	{ path: 'dashboard', component: DashboardComponent, title: 'LinkWire - Dashboard' },
+    { path: 'forgot-password', component: ForgotPasswordComponent, title: 'LinkWire - Forgot Password' },
+    { path: 'viewlink/:linkID', component: ViewLinkComponent, title: 'LinkWire - View Link' },
+    { path: 'password-resets/:requestId', component: PasswordResetsComponent, title: 'LinkWire - Password Reset' },
 	{ 
         matcher: sixDigitCodeMatcher, 
         component: RedirectComponent,

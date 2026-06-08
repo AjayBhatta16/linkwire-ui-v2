@@ -1,0 +1,21 @@
+<div class="d-flex flex-column align-items-center mt-5">
+    <h3 class="mt-5 mb-4">{{ headerText }}</h3>
+    <div class="mt-4 mb-4">
+        <svg width="100" height="100" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="30" fill="#e6ffed" stroke="#22c55e" stroke-width="4" />
+            <path d="M18 34l10 10 18-22" fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </div>
+    <h6 
+        class="mt-4"
+        [innerHTML]="detailText.split('\n').join('<br/><br/>')"
+    ></h6>
+    <div class="button mt-3">
+        <button 
+            type="submit" 
+            mat-raised-button 
+            color="primary"
+            (click)="onButtonClick()"
+        >{{ buttonText }}</button>
+    </div>
+</div>  
