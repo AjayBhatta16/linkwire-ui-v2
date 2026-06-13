@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="d-flex flex-column align-items-center mt-5">
+        <h1 class="mb-3">Device Detector</h1>
+        <h4 class="font-weight-light mb-4">Enter a user agent to get the device brand and model</h4>
+        <form 
+            [formGroup]="form" 
+            (ngSubmit)="onSubmit()" 
+            class="w-100 device-detector-form"
+        >
+            <div class="w-75 mx-auto">
+                <mat-form-field class="w-100">
+                    <textarea 
+                        matInput 
+                        placeholder="User Agent" 
+                        formControlName="userAgent"
+                        rows="5"
+                    ></textarea>
+                </mat-form-field>
+                <div class="button">
+                    <button 
+                        type="submit" 
+                        mat-raised-button 
+                        color="primary"
+                        [disabled]="form.invalid"
+                    >Detect</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
