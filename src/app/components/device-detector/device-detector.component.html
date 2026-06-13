@@ -5,7 +5,7 @@
         <form 
             [formGroup]="form" 
             (ngSubmit)="onSubmit()" 
-            class="w-100 device-detector-form"
+            class="w-100 d-flex flex-row mb-5 device-detector-form"
         >
             <div class="w-75 mx-auto">
                 <mat-form-field class="w-100">
@@ -26,5 +26,11 @@
                 </div>
             </div>
         </form>
+        @if(!!deviceInfo()) {
+            <h5 class="mb-3">Device Info</h5>
+            <linkwire-device-info-panel
+                [data]="deviceInfo()"
+            />
+        }
     </div>
 </div>

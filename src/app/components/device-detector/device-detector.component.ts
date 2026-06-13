@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DeviceDetectorFacade } from "./device-detector.facade";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { DeviceInfoPanelComponent } from "./device-info-panel/device-info-panel.component";
 
 @Component({
     selector: 'linkwire-device-detector',
@@ -13,6 +14,7 @@ import { toSignal } from "@angular/core/rxjs-interop";
     styleUrls: ['./device-detector.component.css'],
     imports: [
         CommonModule,
+        DeviceInfoPanelComponent,
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
