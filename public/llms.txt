@@ -15,6 +15,8 @@ Important notes:
 - [Home](https://app.linkwire.cc/) Main landing page with product overview.
 - [Login](https://app.linkwire.cc/login) Login page for existing users.
 - [Signup](https://app.linkwire.cc/signup) Signup page for new users.
+- [Forgot Password](https://app.linkwire.cc/forgot-password) Password reset page for existing users.
+- [Device Detector](https://app.linkwire.cc/tools/device-detector) Publicly available user agent parsing tool, accessible without creating an account.
 
 ## Key Features
 
