@@ -1,6 +1,8 @@
-<div class="h-100">
+<div class="d-flex flex-column h-100">
     <linkwire-app-header
         [isLoggedIn]="isLoggedIn() ?? false"
     />
-    <router-outlet />
+    <div class="flex-grow-1 min-height-0">
+        <router-outlet />
+    </div>
 </div>
