@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-4">
+        <dl>
+            <dt>Device Type</dt>
+            <dd class="font-weight-light">
+                {{ data?.type || defaultText }}
+            </dd>
+
+            <dt>Brand</dt>
+            <dd class="font-weight-light">
+                {{ data?.brand || defaultText }}
+            </dd>
+
+            <dt>Model</dt>
+            <dd class="font-weight-light">
+                {{ data?.model || defaultText }}
+            </dd>
+        </dl>
+    </div>
+
+    <div class="col-md-4">
+        <dl>
+            <dt>Operating System</dt>
+            <dd class="font-weight-light">
+                {{ data?.osName || defaultText }}
+            </dd>
+
+            <dt>Operating System Version</dt>
+            <dd class="font-weight-light">
+                {{ data?.osVersion || defaultText }}
+            </dd>
+
+            <dt>Client Type</dt>
+            <dd class="font-weight-light">
+                {{ data?.clientType || defaultText }}
+            </dd>
+        </dl>
+    </div>
+
+    <div class="col-md-4">
+        <dl>
+            <dt>Client Name</dt>
+            <dd class="font-weight-light">
+                {{ data?.clientName || defaultText }}
+            </dd>
+
+            <dt>Client Version</dt>
+            <dd class="font-weight-light">
+                {{ data?.clientVersion || defaultText }}
+            </dd>
+        </dl>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 html, body { 
     height: 100%; 
@@ -13,11 +14,22 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
 
+h1, h2.custom-table-header, a.navbar-brand {
+    font-family: "JetBrains Mono", monospace;
+}
+
+h2.custom-table-header {
+    font-size: 45px;
+}
+
 h1 {
-    font-family: 'Righteous', cursive;
     font-size: 60px;
 }
 
 small {
     min-height: 1.2em;
+}
+
+.min-height-0 {
+    min-height: 0;
 }

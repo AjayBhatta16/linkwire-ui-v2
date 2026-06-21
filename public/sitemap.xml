@@ -22,6 +22,15 @@
   <lastmod>1980-01-01T00:00:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
-
+<url>
+  <loc>https://app.linkwire.cc/forgot-password</loc>
+  <lastmod>1980-01-01T00:00:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://app.linkwire.cc/tools/device-detector</loc>
+  <lastmod>1980-01-01T00:00:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
 
 </urlset>

@@ -8,6 +8,8 @@ import { linkFeature } from "./features/link.feature";
 import { LinkEffects } from "./effects/link.effects";
 import { passwordResetFeature } from "./features/password-reset.feature";
 import { PasswordResetEffects } from "./effects/password-reset.effects";
+import { ToolEffects } from "./effects/tool.effects";
+import { toolFeature } from "./features/tool.feature";
 
 @NgModule({
     imports: [
@@ -18,11 +20,13 @@ import { PasswordResetEffects } from "./effects/password-reset.effects";
             [userFeature.name]: userFeature.reducer,
             [linkFeature.name]: linkFeature.reducer,
             [passwordResetFeature.name]: passwordResetFeature.reducer,
+            [toolFeature.name]: toolFeature.reducer,
         }),
         provideEffects([
             UserEffects,
             LinkEffects,
             PasswordResetEffects,
+            ToolEffects,
         ])
     ]
 })

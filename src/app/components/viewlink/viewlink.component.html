@@ -1,16 +1,16 @@
 <div class="container-fluid h-100">
     <div class="d-flex flex-column align-items-center h-100">
-        <div class="d-flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2 mt-2">
             <i 
                 class="fa fa-chevron-left mr-4"
                 role="button"
                 (click)="handleBack()"
                 style="font-size: 1.5em;"
             ></i>
-            <h1>Link Tracking</h1>
+            <h2 class="custom-table-header">Link Tracking</h2>
         </div>
         <div class="d-flex align-items-center">
-            <h4 class="font-weight-normal">Access URL: {{ accessUri$ | async }}</h4>
+            <h5 class="font-weight-light mt-2">Access URL: {{ accessUri$ | async }}</h5>
             <i 
                 class="fa-regular fa-copy text-primary ml-2" 
                 role="button"
