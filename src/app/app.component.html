@@ -1,1 +1,6 @@
-<router-outlet />
+<div class="h-100">
+    <linkwire-app-header
+        [isLoggedIn]="isLoggedIn() ?? false"
+    />
+    <router-outlet />
+</div>
