@@ -6,8 +6,8 @@ import { catchError, map, of, switchMap } from "rxjs";
 
 @Injectable()
 export class ToolEffects {
-    private actions$ = inject(Actions);
-    private toolService = inject(ToolService);
+    private readonly actions$ = inject(Actions);
+    private readonly toolService = inject(ToolService);
 
     getDeviceInfo$ = createEffect(() => {
         return this.actions$.pipe(

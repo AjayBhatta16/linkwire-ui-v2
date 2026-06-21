@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
 import { Store } from '@ngrx/store';
 import { selectUser } from './state/selectors/user.selector';
-import { distinctUntilChanged, map, switchMap } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs';
 import { detectJSONChanges } from './utils/pipe-utils';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 
@@ -17,8 +17,8 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  private destroyRef = inject(DestroyRef);
-  private store = inject(Store);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly store = inject(Store);
 
   isLoggedIn$ = this.store
     .select(selectUser)

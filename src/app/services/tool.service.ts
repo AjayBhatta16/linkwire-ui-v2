@@ -8,7 +8,7 @@ import { environment } from "../../environments/environment";
     providedIn: 'root'
 })
 export class ToolService {
-    private http = inject(HttpClient);
+    private readonly http = inject(HttpClient);
 
     getDeviceInfo(request: GetDeviceInfoRequestDTO): Observable<GetDeviceInfoResponseDTO> {
         return this.http.post<GetDeviceInfoResponseDTO>(
