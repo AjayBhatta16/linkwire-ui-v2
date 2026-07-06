@@ -8,6 +8,7 @@ import { ViewLinkComponent } from './components/viewlink/viewlink.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { PasswordResetsComponent } from './components/password-resets/password-resets.component';
 import { DeviceDetectorComponent } from './components/device-detector/device-detector.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 /**
  * Matches URLs of the form /<6-digit-code>/... (requires at least one path segment after the code)
@@ -36,6 +37,7 @@ export const routes: Routes = [
     { path: 'viewlink/:linkID', component: ViewLinkComponent, title: 'LinkWire - View Link' },
     { path: 'password-resets/:requestId', component: PasswordResetsComponent, title: 'LinkWire - Password Reset' },
     { path: 'tools/device-detector', component: DeviceDetectorComponent, title: 'LinkWire - Device Detector' },
+    { path: 'contact-us', component: ContactUsComponent, title: 'LinkWire - Contact Us' },
 	{ 
         matcher: sixDigitCodeMatcher, 
         component: RedirectComponent,
