@@ -12,7 +12,8 @@ const sampleUser = {
       note: 'note1',
       useLogin: false,
       createdBy: 'user',
-      clicks: [{ clickID: 'c1', ip: '1.1.1.1', linkID: 'l', timestamp: 1, userAgent: 'ua', os: 'os', client: 'c', device: 'd', location: 'loc', isp: 'isp', mobile: false, proxy: false, hosting: false, asn: 'asn' }],
+      clickCount: 1,
+      loginAttemptCount: 0
     },
   ],
 };

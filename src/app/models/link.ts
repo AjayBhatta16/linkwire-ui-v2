@@ -1,5 +1,3 @@
-import { Click } from "./click";
-
 export type Link = {
     trackingID: string;
     displayID: string;
@@ -11,7 +9,8 @@ export type Link = {
     useLogin: boolean;
     loginPageBrand?: string;
     createdBy: string;
-    clicks: Click[];
+    clickCount: number;
+    loginAttemptCount: number;
 }
 
 export type CreateLinkRequest = {
@@ -33,6 +32,6 @@ export function toDisplayData(links: Link[]): DisplayLink[] {
         trackingID: link.trackingID,
         accessURL: `https://linkwire.cc/${link.displayID}`,
         note: link.note,
-        clickCount: link.clicks.length
+        clickCount: link.clickCount
     }));
 }
