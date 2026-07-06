@@ -1,3 +1,5 @@
+import { Click } from "./click";
+
 export type Link = {
     trackingID: string;
     displayID: string;
@@ -11,6 +13,7 @@ export type Link = {
     createdBy: string;
     clickCount: number;
     loginAttemptCount: number;
+    clicks: Click[];
 }
 
 export type CreateLinkRequest = {
