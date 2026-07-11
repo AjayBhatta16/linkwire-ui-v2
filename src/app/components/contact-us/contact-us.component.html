@@ -1,5 +1,61 @@
 <div class="container-fluid">
     <div class="d-flex flex-column align-items-center mt-5">
-        
+        @if (success()) {
+            <linkwire-success-status-jumbotron
+                headerText="Contact message sent successfully!"
+                detailText="We will get back to you soon."
+            />
+        } @else {
+            <h2 class="mb-3 custom-table-header">Contact Us</h2>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <mat-form-field>
+                    <input 
+                        type="text" 
+                        matInput 
+                        placeholder="Name" 
+                        formControlName="name"
+                    >
+                </mat-form-field>
+                <br/>
+                <mat-form-field>
+                    <input 
+                        type="email" 
+                        matInput 
+                        placeholder="Return Email" 
+                        formControlName="returnEmail"
+                    >
+                </mat-form-field>
+                <br/>
+                <mat-form-field>
+                    <input 
+                        type="text" 
+                        matInput 
+                        placeholder="Subject" 
+                        formControlName="subject"
+                    >
+                </mat-form-field>
+                <br/>
+                <mat-form-field>
+                    <textarea
+                        matInput
+                        placeholder="Message"
+                        formControlName="message"
+                    ></textarea>
+                </mat-form-field>
+                <small 
+                    class="form-text text-danger mb-2" 
+                >
+                    {{ (error$ | async) }}
+                </small>
+                <div class="button">
+                    <button 
+                        type="submit" 
+                        mat-raised-button 
+                        color="primary"
+                        [disabled]="(loading() ?? false)"
+                    >Send</button>
+                </div>
+            </form>
+        }
     </div>
 </div>

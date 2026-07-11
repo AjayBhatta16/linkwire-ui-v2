@@ -10,12 +10,14 @@
         class="mt-4"
         [innerHTML]="detailText.split('\n').join('<br/><br/>')"
     ></h6>
-    <div class="button mt-3">
-        <button 
-            type="submit" 
-            mat-raised-button 
-            color="primary"
-            (click)="onButtonClick()"
-        >{{ buttonText }}</button>
-    </div>
+    @if (buttonText) {
+        <div class="button mt-3">
+            <button 
+                type="submit" 
+                mat-raised-button 
+                color="primary"
+                (click)="onButtonClick()"
+            >{{ buttonText }}</button>
+        </div>  
+    }
 </div>  
