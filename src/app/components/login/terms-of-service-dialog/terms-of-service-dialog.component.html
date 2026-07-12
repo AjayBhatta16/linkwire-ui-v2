@@ -2,7 +2,10 @@
 <mat-dialog-content>
   <form [formGroup]="form">
     <div class="w-75 mx-auto">
-        <!-- Insert terms and conditions content here -->
+        <p>In order to continue, you must agree to our latest terms & conditions and privacy policy.</p>
+        <mat-checkbox formControlName="agreedToLatestTerms">
+            I agree to the <a href="/terms_and_conditions.pdf" target="_blank">terms and conditions</a> and <a href="/privacy_policy.pdf" target="_blank">privacy policy</a>.
+        </mat-checkbox>
     </div>
   </form>
 </mat-dialog-content>
