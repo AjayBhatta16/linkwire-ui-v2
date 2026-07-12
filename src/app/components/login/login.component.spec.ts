@@ -73,7 +73,7 @@ describe('LoginComponent', () => {
   });
 
   it('should navigate to dashboard when user is logged in', () => {
-    facadeMock.user$.next({ id: 1 });
+    facadeMock.user$.next({ id: 1, agreedToLatestTerms: true });
     component.ngOnInit();
     expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
   });

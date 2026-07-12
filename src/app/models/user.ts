@@ -5,4 +5,5 @@ export type User = {
     email: string;
     premiumUser: boolean;
     links: Link[];
+    agreedToLatestTerms?: boolean;
 }

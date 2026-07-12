@@ -9,6 +9,8 @@ import { Router, RouterModule } from "@angular/router";
 import { BehaviorSubject, combineLatest, distinctUntilChanged, map } from "rxjs";
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { detectJSONChanges } from "../../utils/pipe-utils";
+import { MatDialog } from "@angular/material/dialog";
+import { TermsOfServiceDialogComponent } from "./terms-of-service-dialog/terms-of-service-dialog.component";
 
 @Component({
     selector: 'linkwire-login',
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
     private destroyRef = inject(DestroyRef);
     private facade = inject(LoginFacade);
     private router = inject(Router);
+    private readonly dialog = inject(MatDialog);
 
     loading$ = this.facade.loading$;
     user$ = this.facade.user$;
@@ -60,7 +63,11 @@ export class LoginComponent implements OnInit {
             takeUntilDestroyed(this.destroyRef),
         ).subscribe(([user, loading]) => {
             if (user && !loading) {
-                this.router.navigate(['/dashboard']);
+                if (user.agreedToLatestTerms) {
+                    this.router.navigate(['/dashboard']);
+                } else {
+                    this.dialog.open(TermsOfServiceDialogComponent, { minWidth: 500 });
+                }
             }
         });
     }
