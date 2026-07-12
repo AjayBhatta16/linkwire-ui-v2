@@ -12,6 +12,9 @@ const actionNames = {
     USER_DATA_REFRESH_REQUEST: "[User] User Data Refresh Request",
     USER_DATA_REFRESH_SUCCESS: "[User] User Data Refresh Success",
     USER_DATA_REFRESH_FAILURE: "[User] User Data Refresh Failure",
+    POST_USER_AGREED_TO_TERMS: "[User] Post User Agreed To Terms",
+    POST_USER_AGREED_TO_TERMS_SUCCESS: "[User] Post User Agreed To Terms Success",
+    POST_USER_AGREED_TO_TERMS_FAILURE: "[User] Post User Agreed To Terms Failure",
 }
 
 export const userLogin = createAction(
@@ -75,6 +78,27 @@ export const userDataRefreshSuccess = createAction(
 
 export const userDataRefreshFailure = createAction(
     actionNames.USER_DATA_REFRESH_FAILURE,
+    props<{
+        error: any;
+    }>()
+);
+
+export const postUserAgreedToTerms = createAction(
+    actionNames.POST_USER_AGREED_TO_TERMS,
+    props<{
+        username: string;
+    }>()
+);
+
+export const postUserAgreedToTermsSuccess = createAction(
+    actionNames.POST_USER_AGREED_TO_TERMS_SUCCESS,
+    props<{
+        userInfo: User;
+    }>()
+);
+
+export const postUserAgreedToTermsFailure = createAction(
+    actionNames.POST_USER_AGREED_TO_TERMS_FAILURE,
     props<{
         error: any;
     }>()

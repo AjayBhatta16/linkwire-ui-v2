@@ -1,7 +1,7 @@
 import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { UserService } from "../../services/user.service";
-import { userDataRefreshFailure, userDataRefreshRequest, userDataRefreshSuccess, userLogin, userLoginFailure, userLoginSuccess, userSignup, userSignupFailure, userSignupSuccess } from "../actions/user.actions";
+import { postUserAgreedToTerms, postUserAgreedToTermsFailure, postUserAgreedToTermsSuccess, userDataRefreshFailure, userDataRefreshRequest, userDataRefreshSuccess, userLogin, userLoginFailure, userLoginSuccess, userSignup, userSignupFailure, userSignupSuccess } from "../actions/user.actions";
 import { catchError, map, of, switchMap } from "rxjs";
 
 @Injectable()
@@ -41,6 +41,18 @@ export class UserEffects {
                 this.userService.refreshUserData(username).pipe(
                     map(res => userDataRefreshSuccess({ links: res })),
                     catchError(error => of(userDataRefreshFailure({ error: error.error })))
+                )
+            )
+        )
+    )
+
+    postUserAgreedToTerms$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(postUserAgreedToTerms),
+            switchMap(({ username }) => 
+                this.userService.postUserAgreedToTerms(username).pipe(
+                    map(res => postUserAgreedToTermsSuccess({ userInfo: res })),
+                    catchError(error => of(postUserAgreedToTermsFailure({ error: error.error })))
                 )
             )
         )

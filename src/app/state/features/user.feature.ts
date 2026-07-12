@@ -1,6 +1,8 @@
 import { createFeature, createReducer, on } from "@ngrx/store";
 import { User } from "../../models/user";
 import { 
+    postUserAgreedToTermsSuccess,
+    postUserAgreedToTerms,
     userDataRefreshFailure, 
     userDataRefreshRequest, 
     userDataRefreshSuccess, 
@@ -9,7 +11,8 @@ import {
     userLoginSuccess, 
     userSignup, 
     userSignupFailure, 
-    userSignupSuccess 
+    userSignupSuccess, 
+    postUserAgreedToTermsFailure
 } from "../actions/user.actions";
 import { createLinkSuccess } from "../actions/link.actions";
 import { updateUserPasswordSuccess } from "../actions/password-reset.actions";
@@ -90,6 +93,22 @@ export const userFeature = createFeature({
             ...state,
             loading: false,
             error,
-        }))
+        })),
+        on(postUserAgreedToTerms, (state) => ({
+            ...state,
+            loading: true,
+            error: null,
+        })),
+        on(postUserAgreedToTermsSuccess, (state, { userInfo }) => ({
+            ...state,
+            user: userInfo,
+            loading: false,
+            error: null,
+        })),
+        on(postUserAgreedToTermsFailure, (state, { error }) => ({
+            ...state,
+            loading: false,
+            error,
+        })),
     )
 });

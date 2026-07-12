@@ -46,4 +46,12 @@ export class UserService {
             { withCredentials: true }
         );
     }
+
+    postUserAgreedToTerms(username: string): Observable<User> {
+        return this.http.post<User>(
+            `${environment.API_BASE_URL}/users/${username}/agreed-to-terms`,
+            {},
+            { withCredentials: true }
+        );
+    }
 }
