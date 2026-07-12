@@ -19,5 +19,6 @@
     mat-raised-button
     color="primary"
     (click)="onSubmit()"
-  >Save</button>
+    [disabled]="(loading$ | async) || !form.valid"
+  >Continue</button>
 </mat-dialog-actions>
