@@ -43,5 +43,24 @@
                 </div>
             </li>
         </ul>
+        @if (isLoggedIn) {
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown ml-auto">
+                    <a
+                        class="nav-link d-flex align-items-center"
+                        href="#"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        <i class="fa-regular fa-circle-user fa-lg"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right bg-dark-custom">
+                        <a class="dropdown-item text-light" href="#">Log Out</a>
+                        <a class="dropdown-item text-light" href="#">Change Password</a>
+                    </div>
+                </li>
+            </ul>
+        }
     </div>
 </nav>
