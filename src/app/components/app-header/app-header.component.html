@@ -56,7 +56,11 @@
                         <i class="fa-regular fa-circle-user fa-lg"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right bg-dark-custom">
-                        <a class="dropdown-item text-light" href="#">Log Out</a>
+                        <p 
+                            class="dropdown-item text-light" 
+                            role="button" 
+                            (click)="openLogoutConfirmationDialog()"
+                        >Log Out</p>
                         <a 
                             class="dropdown-item text-light" 
                             [routerLink]="['settings', 'change-password']"
