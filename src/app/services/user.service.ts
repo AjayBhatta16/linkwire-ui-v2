@@ -54,4 +54,11 @@ export class UserService {
             { withCredentials: true }
         );
     }
+
+    logout(): Observable<void> {
+        return this.http.post<void>(
+            `${environment.API_BASE_URL}/auth/logout`,
+            {},
+        );
+    }
 }
