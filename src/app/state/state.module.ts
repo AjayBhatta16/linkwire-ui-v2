@@ -12,6 +12,7 @@ import { ToolEffects } from "./effects/tool.effects";
 import { toolFeature } from "./features/tool.feature";
 import { contactFeature } from "./features/contact.feature";
 import { ContactEffects } from "./effects/contact.effects";
+import { authFeature } from "./features/auth.feature";
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { ContactEffects } from "./effects/contact.effects";
             [passwordResetFeature.name]: passwordResetFeature.reducer,
             [toolFeature.name]: toolFeature.reducer,
             [contactFeature.name]: contactFeature.reducer,
+            [authFeature.name]: authFeature.reducer,
         }),
         provideEffects([
             UserEffects,

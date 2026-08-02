@@ -1,6 +1,7 @@
 import { createFeature, createReducer, on } from "@ngrx/store";
 import { Link } from "../../models/link";
 import { clearSelectedLink, createLink, createLinkFailure, createLinkSuccess, fetchLinkDetails, fetchLinkDetailsFailure, fetchLinkDetailsSuccess } from "../actions/link.actions";
+import { authLogoutComplete } from "../actions/auth.actions";
 
 interface LinkState {
     link: Link | null;
@@ -55,6 +56,12 @@ export const linkFeature = createFeature({
             ...state,
             loading: false,
             error,
-        }))
+        })),
+        on(authLogoutComplete, (state) => ({
+            ...state,
+            link: null,
+            loading: false,
+            error: null,
+        })),
     )
 });

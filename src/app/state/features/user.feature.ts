@@ -16,6 +16,7 @@ import {
 } from "../actions/user.actions";
 import { createLinkSuccess } from "../actions/link.actions";
 import { updateUserPasswordSuccess } from "../actions/password-reset.actions";
+import { authLogoutComplete } from "../actions/auth.actions";
 
 interface UserState {
     user: User | null;
@@ -109,6 +110,12 @@ export const userFeature = createFeature({
             ...state,
             loading: false,
             error,
+        })),
+        on(authLogoutComplete, (state) => ({
+            ...state,
+            user: null,
+            loading: false,
+            error: null,
         })),
     )
 });
