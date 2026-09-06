@@ -8,7 +8,7 @@ import { Observable, interval, map, startWith } from 'rxjs';
 export class RemoteConfigService {
     private remoteConfig: RemoteConfig = inject(RemoteConfig);
 
-    FETCH_INTERVAL_MILLIS = 5 * 1000;
+    FETCH_INTERVAL_MILLIS = 10 * 60 * 1000;
 
     constructor() {
         this.remoteConfig.settings.minimumFetchIntervalMillis = this.FETCH_INTERVAL_MILLIS;
