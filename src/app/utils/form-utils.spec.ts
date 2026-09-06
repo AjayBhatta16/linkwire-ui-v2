@@ -1,8 +1,9 @@
 import { urlRegex } from "./form-utils";
+import { Validators } from "@angular/forms";
 
 describe('form-utils', () => {
     it('urlRegex works', () => {
-        var re = new RegExp(urlRegex);
+        var validator = Validators.pattern(urlRegex);
 
         var test1 = "https://ajaybhattacharyya.com";
         var test2 = "ajaybhattacharyya.com";
@@ -12,20 +13,20 @@ describe('form-utils', () => {
         var test6 = "https://www.google.com/";
         var test7 = "https://ajaybhattacharyya.com/resume.pdf";
 
-        var matchResult1 = test1.match(re);
-        var matchResult2 = test2.match(re);
-        var matchResult3 = test3.match(re);
-        var matchResult4 = test4.match(re);
-        var matchResult5 = test5.match(re);
-        var matchResult6 = test6.match(re);
-        var matchResult7 = test7.match(re);
+        var matchResult1 = validator({ value: test1 } as any);
+        var matchResult2 = validator({ value: test2 } as any);
+        var matchResult3 = validator({ value: test3 } as any);
+        var matchResult4 = validator({ value: test4 } as any);
+        var matchResult5 = validator({ value: test5 } as any);
+        var matchResult6 = validator({ value: test6 } as any);
+        var matchResult7 = validator({ value: test7 } as any);
 
-        expect(matchResult1).not.toBeNull();
-        expect(matchResult2).not.toBeNull();
-        expect(matchResult3).toBeNull();
-        expect(matchResult4).not.toBeNull();
-        expect(matchResult5).not.toBeNull();
-        expect(matchResult6).not.toBeNull();
-        expect(matchResult7).not.toBeNull();
+        expect(matchResult1).toBeNull();
+        expect(matchResult2).toBeNull();
+        expect(matchResult3).not.toBeNull();
+        expect(matchResult4).toBeNull();
+        expect(matchResult5).toBeNull();
+        expect(matchResult6).toBeNull();
+        expect(matchResult7).toBeNull();
     });
 });
