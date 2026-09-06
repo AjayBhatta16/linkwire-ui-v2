@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="d-flex flex-column align-items-center mt-5">
+        <main class="faqs-page" aria-labelledby="faqs-heading">
+            <header class="faqs-page__header mb-5 text-center">
+                <h2 class="custom-table-header mt-2" id="faqs-heading">Frequently Asked Questions</h2>
+                <p>Find answers to common questions about LinkWire.</p>
+            </header>
+
+            <section class="faqs-list" aria-label="Frequently asked questions">
+                <article
+                    class="faq-item card bg-dark text-white shadow-sm mb-3 w-75 mx-auto"
+                    *ngFor="let faq of FAQs"
+                    itemscope
+                    itemtype="https://schema.org/Question"
+                >
+                    <div class="card-body">
+                        <h4 class="card-title" itemprop="name">{{ faq.question }}</h4>
+                        <div
+                            class="faq-item__answer card-text"
+                            itemprop="acceptedAnswer"
+                            itemscope
+                            itemtype="https://schema.org/Answer"
+                        >
+                            <p itemprop="text">{{ faq.answer }}</p>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
+</div>
