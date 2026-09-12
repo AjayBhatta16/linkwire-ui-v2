@@ -9,6 +9,7 @@
             matInput 
             placeholder="Target URL" 
             formControlName="redirectURL"
+            data-testid="target-url-input"
         >
       </mat-form-field>
       <br/>
@@ -19,11 +20,13 @@
             matInput 
             placeholder="Note" 
             formControlName="note"
+            data-testid="note-input"
         >
       </mat-form-field>
       <br/>
       <small 
         class="form-text text-danger mb-2" 
+        data-testid="error-text"
       >{{ (error$ | async) }}</small>
     </div>
   </form>
@@ -40,5 +43,6 @@
     color="primary"
     [disabled]="(loading$ | async) ?? false"
     (click)="onSubmit()"
+    data-testid="submit-button"
   >Save</button>
 </mat-dialog-actions>

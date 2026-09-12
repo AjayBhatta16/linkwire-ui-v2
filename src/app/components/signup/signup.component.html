@@ -8,6 +8,7 @@
                     matInput 
                     placeholder="Username" 
                     formControlName="username"
+                    data-testid="username-input"
                 >
             </mat-form-field>
             <br/>
@@ -17,6 +18,7 @@
                     matInput 
                     placeholder="E-Mail" 
                     formControlName="email"
+                    data-testid="email-input"
                 >
             </mat-form-field>
             <br/>
@@ -26,11 +28,12 @@
                     matInput 
                     placeholder="Password" 
                     formControlName="password"
+                    data-testid="password-input"
                 >
             </mat-form-field>
             <br/>
             <div style="max-width: 200px;">
-                <mat-checkbox formControlName="agreedToLatestTerms">
+                <mat-checkbox formControlName="agreedToLatestTerms" data-testid="agreed-to-latest-terms-checkbox">
                     I agree to the <a href="/terms_and_conditions.pdf" target="_blank">terms and conditions</a> and <a href="/privacy_policy.pdf" target="_blank">privacy policy</a>.
                 </mat-checkbox>
             </div>
@@ -39,6 +42,7 @@
             </div>
             <small 
                 class="form-text text-danger mb-2" 
+                data-testid="error-text"
             >
                 {{ (error$ | async) }}
             </small>
@@ -48,6 +52,7 @@
                     mat-raised-button 
                     color="primary"
                     [disabled]="(loading$ | async) ?? false"
+                    data-testid="submit-button"
                 >Sign Up</button>
             </div>
         </form>

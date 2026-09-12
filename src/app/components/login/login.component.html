@@ -8,6 +8,7 @@
                     matInput 
                     placeholder="Username/E-Mail" 
                     formControlName="username"
+                    data-testid="username-input"
                 >
             </mat-form-field>
             <br/>
@@ -17,6 +18,7 @@
                     matInput 
                     placeholder="Password" 
                     formControlName="password"
+                    data-testid="password-input"
                 >
             </mat-form-field>
             <div class="mt-0 mb-2 d-flex justify-content-between">
@@ -25,6 +27,7 @@
             </div>
             <small 
                 class="form-text text-danger mb-2" 
+                data-testid="error-text"
             >
                 {{ (error$ | async) }}
             </small>
@@ -34,6 +37,7 @@
                     mat-raised-button 
                     color="primary"
                     [disabled]="(loading$ | async) ?? false"
+                    data-testid="submit-button"
                 >Login</button>
             </div>
         </form>
