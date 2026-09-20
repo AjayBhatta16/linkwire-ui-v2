@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CTAOverviewSectionComponent } from "./cta-overview-section/cta-overview-section.component";
+import { FeaturesSectionComponent } from "./features-section/features-section.component";
 
 @Component({
     selector: 'linkwire-landing-page',
@@ -9,6 +10,7 @@ import { CTAOverviewSectionComponent } from "./cta-overview-section/cta-overview
     imports: [
         CommonModule,
         CTAOverviewSectionComponent,
+        FeaturesSectionComponent,
     ],
 })
 export class LandingPageComponent {}
