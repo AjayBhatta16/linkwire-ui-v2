@@ -12,6 +12,7 @@ html, body {
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
+    padding-top: 56px;
 }
 
 h1, h2.custom-table-header, a.navbar-brand {
@@ -32,4 +33,13 @@ small {
 
 .min-height-0 {
     min-height: 0;
+}
+
+.bg-dark-custom {
+    background-color: #000028;
+}
+
+.landing-page-segment {
+    min-height: 100%;
+    overflow-y: visible;
 }

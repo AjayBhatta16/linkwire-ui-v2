@@ -1,8 +1,9 @@
-import { Component, inject } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { RemoteConfigService } from "../../services/remote-config.service";
-import { toSignal } from "@angular/core/rxjs-interop";
+import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { CTAOverviewSectionComponent } from "./cta-overview-section/cta-overview-section.component";
+import { FeaturesSectionComponent } from "./features-section/features-section.component";
+import { AboutSectionComponent } from "./about-section/about-section.component";
+import { GatheredInfoSectionComponent } from "./gathered-info-section/gathered-info-section.component";
 
 @Component({
     selector: 'linkwire-landing-page',
@@ -10,12 +11,10 @@ import { CommonModule } from "@angular/common";
     styleUrls: ['./landing-page.component.css'],
     imports: [
         CommonModule,
-        RouterModule,
+        CTAOverviewSectionComponent,
+        FeaturesSectionComponent,
+        AboutSectionComponent,
+        GatheredInfoSectionComponent,
     ],
 })
-export class LandingPageComponent {
-    private readonly remoteConfigService = inject(RemoteConfigService);
-
-    testFeature$ = this.remoteConfigService.getFeatureFlagObservable('TEST_FEATURE');
-    testFeatureEnabled = toSignal(this.testFeature$);
-}
+export class LandingPageComponent {}

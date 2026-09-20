@@ -1,0 +1,13 @@
+<div class="container landing-page-segment">
+    <div class="d-flex flex-column align-items-center mt-5">
+        <h1 class="mt-5">Features</h1>
+        <div class="card-deck mt-5">
+            @for (feature of highlightedFeatures; track $index) {
+                <linkwire-feature-card
+                    [feature]="feature"
+                />
+            }
+        </div>
+        <h5 class="my-5">And many more to come. Stay tuned!</h5>
+    </div>
+</div>

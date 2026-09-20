@@ -1,17 +1,4 @@
-<div class="container-fluid">
-    <div class="d-flex flex-column align-items-center mt-5">
-        <h1 class="mt-5">LinkWire</h1>
-        <h6 class="mt-2">The minimalistic, Instagram-friendly IP logger</h6>
-        @if (testFeatureEnabled()) {
-            <p>Feature flag check works!</p>
-        }
-        <div class="d-flex flex-row justify-content-center mt-5">
-            <a [routerLink]="['login']">
-                <button class="btn mt-3 mr-1" data-testid="login-button">Log In</button>
-            </a>
-            <a [routerLink]="['signup']">
-                <button class="btn mt-3 ml-1" data-testid="signup-button">Sign Up</button>
-            </a>
-        </div>
-    </div>
-</div>
+<linkwire-cta-overview-section/>
+<linkwire-features-section/>
+<linkwire-about-section/>
+<linkwire-gathered-info-section/>

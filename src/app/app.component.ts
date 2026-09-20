@@ -6,10 +6,12 @@ import { selectUser } from './state/selectors/user.selector';
 import { distinctUntilChanged, map } from 'rxjs';
 import { detectJSONChanges } from './utils/pipe-utils';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { AppFooterComponent } from './components/app-footer/app-footer.component';
 
 @Component({
   selector: 'app-root',
   imports: [
+    AppFooterComponent,
     AppHeaderComponent,
     RouterOutlet,
   ],
