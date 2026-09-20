@@ -35,6 +35,10 @@ small {
     min-height: 0;
 }
 
+.bg-dark-custom {
+    background-color: #000028;
+}
+
 .landing-page-segment {
     min-height: 100%;
     overflow-y: visible;
