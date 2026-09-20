@@ -2,6 +2,7 @@ import { Component, inject, Input } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { LogoutConfirmationDialogComponent } from "./logout-confirmation-dialog/logout-confirmation-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
+import { DonationLinkButtonComponent } from "./donation-link-button/donation-link-button.component";
 
 @Component({
     selector: 'linkwire-app-header',
@@ -11,6 +12,7 @@ import { MatDialog } from "@angular/material/dialog";
     ],
     imports: [
         RouterModule,
+        DonationLinkButtonComponent,
     ],
 })
 export class AppHeaderComponent {
