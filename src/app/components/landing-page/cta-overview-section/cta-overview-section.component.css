@@ -1,0 +1,11 @@
+button {
+    background-color: #16023f;
+    color: rgb(240, 240, 240) !important;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid white !important;
+    border-radius: 40px;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
