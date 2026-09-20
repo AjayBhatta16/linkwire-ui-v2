@@ -1,0 +1,10 @@
+.bubble {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    background-color: #000028;
+}
+
+.info-bubble-container {
+    width: 120px;
+}

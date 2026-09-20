@@ -1,8 +1,12 @@
-
 export interface FeatureCardData {
     iconClass: string;
     titleText: string;
     description?: string;
+}
+
+export interface InfoBubbleData {
+    name: string;
+    iconClass: string;
 }
 
 export const highlightedFeatures: FeatureCardData[] = [
@@ -20,5 +24,28 @@ export const highlightedFeatures: FeatureCardData[] = [
         iconClass: "fa-solid fa-user-gear",
         titleText: "Break Down User Agents",
         description: "If you have a user agent string you got from a less user-friendly logger (not mentioning any names), you can extrapolate all of the details with our device detector page.",
+    },
+];
+
+export const gatheredInfo: InfoBubbleData[] = [
+    {
+        name: 'IP Address',
+        iconClass: 'fa-solid fa-wifi',
+    },
+    {
+        name: 'Approximate Location',
+        iconClass: 'fa-solid fa-location-dot',
+    },
+    {
+        name: 'Device Specifications',
+        iconClass: 'fa-solid fa-desktop',
+    },
+    {
+        name: 'Operating System',
+        iconClass: 'fa-solid fa-terminal',
+    },
+    {
+        name: 'Browser',
+        iconClass: 'fa-solid fa-hand-pointer',
     },
 ];
